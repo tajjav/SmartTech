@@ -1,5 +1,13 @@
-node_modules/
-public/styles
+backend/node_modules/
+backend/public/styles
 .env
 *.log
 *.sqlite3
+
+
+
+
+
+
+
+frontend/node_modules/
