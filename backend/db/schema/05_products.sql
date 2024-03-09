@@ -9,8 +9,10 @@ CREATE TABLE products (
     price_cents INT NOT NULL,
     quantity INT NOT NULL,
     category_id INT NOT NULL,
+    brand VARCHAR(255),
     model VARCHAR(255),
     year INT,
+    is_clearance BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES category(id)
