@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id INT,
     email VARCHAR(255) NOT NULL,
     stripe_charge_id VARCHAR(255),
     payment_amount_cents INT NOT NULL,

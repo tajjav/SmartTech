@@ -7,7 +7,7 @@ CREATE TABLE products (
     image_2 VARCHAR(255),
     image_3 VARCHAR(255),
     price_cents INT NOT NULL,
-    quantity INT NOT NULL,
+    quantity INT,
     category_id INT NOT NULL,
     brand VARCHAR(255),
     model VARCHAR(255),
