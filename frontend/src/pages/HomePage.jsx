@@ -1,7 +1,9 @@
-
 import React from 'react';
 import ProductCard from '../components/ProductCard';
-import '../styles/HomePage.scss';
+import { Grid } from '@mui/material';
+
+
+
 
 
 const mockProducts = [
@@ -10,23 +12,23 @@ const mockProducts = [
   { id: 3, name: 'Headphones', description: 'Noise-cancelling headphones', price: '$299', imageUrl: '/images/Headphones.png' },
   { id: 4, name: 'SmartPhones', description: 'Experience next-gen photography with our best smartphone camera.', price: '$199', imageUrl: '/images/Smartphone1.jpg' },
   { id: 5, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet1.png' },
-  
 ];
 
 const HomePage = () => {
   return (
     <div className="home-page">
-      <div className="product-grid">
+      <Grid container spacing={2}>
         {mockProducts.map(product => (
-        <ProductCard
-          key={product.id}
-          name={product.name}
-          description={product.description}
-          price={product.price}
-          imageUrl={product.imageUrl}
-        />
-      ))}
-       </div>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+            <ProductCard
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              imageUrl={product.imageUrl}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };
