@@ -1,35 +1,77 @@
-// NavBar.jsx
 import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-import '../styles/NavBar.scss';
+
+
+const categories = ['TVs', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
 
 const NavBar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = (isOpen) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(isOpen);
+  };
+
+
+  const DrawerList = () => (
+    <div
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {categories.map((text) => (
+          <ListItem button key={text} component={Link} to={`/category/${text.toLowerCase()}`}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="navbar-brand">SmartTech</Link>
-      <div className="navbar-menu">
-        <Link to="/" className="navbar-item">Home</Link>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="open drawer">
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" component={Link} to="/" style={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+          SmartTech
+        </Typography>
 
-        <div className="navbar-item" onMouseEnter={() => setIsDropdownOpen(true)} onMouseLeave={() => setIsDropdownOpen(false)}>
-          Products
-          {isDropdownOpen && (
-            <div className="dropdown">
-              <Link to="/category/tvs">TVs</Link>
-              <Link to="/category/laptops">Laptops</Link>
-              <Link to="/category/smartphones">Smartphones</Link>
-              <Link to="/category/headphones">Headphones</Link>
-              <Link to="/category/tablets">Tablets</Link>
-            </div>
-          )}
-        </div>
+        <Button color="inherit" component={Link} to="/">Home</Button>
 
-        <Link to="/clearance" className="navbar-item">Clearance</Link>
-      
-        <Link to="/about" className="navbar-item">About Us</Link>
-      </div>
-    </nav>
+        {/* Button for Drawer */}
+        <Button color="inherit" onClick={toggleDrawer(true)}>Products</Button>
+        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+          <DrawerList />
+        </Drawer>
+
+        <Button color="inherit" component={Link} to="/clearance">Clearance</Button>
+        <Button color="inherit" component={Link} to="/about">About Us</Button>
+
+        <IconButton aria-label="show cart items" color="inherit" component={Link} to="/cart">
+          <ShoppingCartIcon />
+        </IconButton>
+        <IconButton
+          edge="end"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          color="inherit"
+          component={Link}
+          to="/account"
+        >
+          <AccountCircle />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 };
 
