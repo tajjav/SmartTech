@@ -2,5 +2,5 @@ INSERT INTO categories (name) VALUES
   ('TV'),
   ('Laptops'),
   ('Tablets'),
-  ('Smartphone'),
+  ('Smartphones'),
   ('Headphones');
