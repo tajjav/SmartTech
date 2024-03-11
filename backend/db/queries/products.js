@@ -76,7 +76,7 @@ const showByCategoryId = (category_id) => {
     SELECT * FROM products
     WHERE category_id = $1;
   `;
-  const queryParams = [${category_id}];
+  const queryParams = [category_id];
 
   return db
     .query(queryString,queryParams)
@@ -87,19 +87,20 @@ const showByCategoryId = (category_id) => {
 const update = (updatedProduct) => {
   const { id, name, description, image_1, image_2, image_3, price_cents, quantity, category_id, brand, model, year, is_clearance } = updatedProduct;
   const queryString = `
-    UPDATE products SET
-    name = $1,
-    description = $2,
-    image_1 = $3,
-    image_2 = $4,
-    image_3 = $5,
-    price_cents = $6,
-    quantity = $7,
-    category_id = $8,
-    brand = $9,
-    model = $10,
-    year = $11,
-    is_clearance = $12
+    UPDATE products SET (
+      name = $1,
+      description = $2,
+      image_1 = $3,
+      image_2 = $4,
+      image_3 = $5,
+      price_cents = $6,
+      quantity = $7,
+      category_id = $8,
+      brand = $9,
+      model = $10,
+      year = $11,
+      is_clearance = $12
+    )
     WHERE id = $13
     RETURNING *;
   `;
