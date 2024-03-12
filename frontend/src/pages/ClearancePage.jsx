@@ -4,19 +4,19 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 
-const CartPage = () => {
+const ClearancePage = () => {
   return (
     <div>
       <Breadcrumbs aria-label="breadcrumb">
         <Link component={RouterLink} color="inherit" to="/">
           Home
         </Link>
-        <Typography color="text.primary"> Cart</Typography>
+        <Typography color="text.primary">Clearance</Typography>
       </Breadcrumbs>
 
-      {/* AboutUs page content goes here */}
+      {/* Clearance page content goes here */}
     </div>
   );
 };
 
-export default CartPage;
+export default ClearancePage;
