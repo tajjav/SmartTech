@@ -7,6 +7,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link as RouterLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid'; 
 
 
 
@@ -75,13 +76,7 @@ const mockData = {
       price: '$999',
       imageUrl: '/images/TV.png', 
     },
-    {
-      id: 'tv10',
-      name: '4K HDR TV',
-      description: '4K High Dynamic Range for stunning picture quality',
-      price: '$1299',
-      imageUrl: '/images/TV.png',
-    },
+    
     
   ],
   laptops: [
@@ -148,13 +143,7 @@ const mockData = {
       price: '$1999',
       imageUrl:'/images/Laptop.jpg',
     },
-    {
-      id: 'laptop10',
-      name: 'Ultrabook Laptop',
-      description: 'Sleek ultrabook with all-day battery life',
-      price: '$1499',
-      imageUrl: '/images/Laptop.jpg',
-    },
+   
     
   ],
  
@@ -219,13 +208,7 @@ const mockData = {
       price: '$299',
       imageUrl: '/images/Headphones.png',
     },
-    {
-      id: 'headphone10',
-      name: 'Wireless Earbuds',
-      description: 'True wireless earbuds with unparalleled sound quality.',
-      price: '$199',
-      imageUrl: '/images/Headphones.png',
-    },
+    
     ],
     
     smartphones: [
@@ -292,13 +275,7 @@ const mockData = {
         price: '$999',
         imageUrl: '/images/Smartphone1.jpg',
       },
-      {
-        id: 'smartphone10',
-        name: 'Smartphone Z Fold',
-        description: 'Futuristic design with a foldable screen.',
-        price: '$1499',
-        imageUrl: '/images/Smartphone1.jpg',
-      },
+      
     
     ],
     tablets: [
@@ -365,13 +342,7 @@ const mockData = {
         price: '$799',
         imageUrl: '/images/Tablet1.png',
       },
-      {
-        id: 'tablet10',
-        name: 'Tablet Lite 10"',
-        description: 'Lightweight and perfect for entertainment on the go.',
-        price: '$499',
-        imageUrl: '/images/Tablet1.png',
-      },
+      
       
     ]
   };
@@ -398,20 +369,22 @@ const mockData = {
         <Typography color="text.primary">{categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}</Typography>
       </Breadcrumbs>
 
-    <div>
-      <h1>Category: {categoryId}</h1>
-      <div className="product-list">
-        {products.map(product => (
-          <ProductCard
-            key={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            imageUrl={product.imageUrl}
-          />
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}> {/* Center your title and add margin-bottom */}
+        Category: {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
+      </h1>
+
+      <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px' }}> {/* Center your grid container and restrict its max width */}
+        {products.map((product) => (
+          <Grid item xs={12} sm={6} md={4} key={product.id} style={{ display: 'flex', justifyContent: 'center' }}> {/* Center each item and add 'display: flex' for vertical alignment */}
+            <ProductCard
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              imageUrl={product.imageUrl}
+            />
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
     </div>
   );
 };
