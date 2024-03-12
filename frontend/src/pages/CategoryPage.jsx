@@ -6,7 +6,7 @@ import ProductCard from '../components/ProductCard';
 
 
 const mockData = {
-  tv: [
+  tvs: [
     {
       id: 'tv1',
       name: 'Smart OLED TV',
@@ -23,7 +23,7 @@ const mockData = {
     },
     
   ],
-  laptop: [
+  laptops: [
     {
       id: 'laptop1',
       name: 'Gaming Laptop',
@@ -93,15 +93,15 @@ const mockData = {
       },
     ]
   };
-
-
   const CategoryPage = () => {
     const { categoryId } = useParams();
-    const [products, setProducts] = React.useState(mockData[categoryId] || []);
+    const [products, setProducts] = React.useState([]);
 
-  React.useEffect(() => {
+  
+
+   React.useEffect(() => {
     
-    fetchProductsByCategory(categoryId).then(setProducts);
+    setProducts(mockData[categoryId.toLowerCase()] || []);
   }, [categoryId]);
 
   return (

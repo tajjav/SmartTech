@@ -7,6 +7,12 @@ import { Paper, Button } from '@mui/material';
 
 // Carousel items data, just the images
 const carouselItems = [
+//  {
+    //type: 'iframe', // Indicating this item is an iframe
+   // src: "https://www.canva.com/design/DAF_PiEhPI4/6ZmxnlWI5xzbbcQFrLFeCg/view?embed", // iframe source URL
+   // link: "https://www.canva.com/design/DAF_PiEhPI4/6ZmxnlWI5xzbbcQFrLFeCg/view?utm_content=DAF_PiEhPI4&utm_campaign=designshare&utm_medium=embeds&utm_source=link", // Link for iframe content
+    
+ // },
   {
     imageUrl: '/images/TV.png',
   },
@@ -25,22 +31,57 @@ const carouselItems = [
 ];
   
 function CarouselItem(props) {
-  return (
-    <Paper
-      style={{
-        backgroundImage: `url(${props.imageUrl})`,
-        backgroundSize: 'contain', // This will make sure the entire image fits within the Paper
-        backgroundRepeat: 'no-repeat', // This will prevent the image from repeating
-        backgroundPosition: 'center', // This will center the image within the Paper
-        height: '300px', // Adjust the height as needed
-        width: '100%', // This will ensure the Paper component is full width
-        margin: 'auto', // Centers the Paper component if it's not full width
-      }}
-      elevation={0}
-    />
-  );
+  if (props.type === 'iframe') {
+    // Rendering iframe
+    return (
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        paddingTop: '56.25%', 
+        overflow: 'hidden',
+        borderRadius: '8px',
+        boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
+        margin: '1.6em 0 0.9em 0',
+      }}>
+        <iframe
+          loading="lazy"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: 0,
+            left: 0,
+            border: 'none',
+            padding: 0,
+            margin: 0,
+          }}
+          src={props.src}
+          allowFullScreen
+          allow="fullscreen"
+        ></iframe>
+        <a href={props.link} target="_blank" rel="noopener" style={{ display: 'block', textAlign: 'center', marginTop: '0.5em' }}>
+          Design by {props.designBy}
+        </a>
+      </div>
+    );
+  } else {
+    // Rendering image as before
+    return (
+      <Paper
+        style={{
+          backgroundImage: `url(${props.imageUrl})`,
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          height: '300px',
+          width: '100%',
+          margin: 'auto',
+        }}
+        elevation={0}
+      />
+    );
+  }
 }
-
 
 
 const mockProducts = [
