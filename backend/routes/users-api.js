@@ -10,6 +10,28 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/users');
 
+
+router.get('/register', (req, res) => {
+  const { user_id } = req.session;
+  if (user_id) {
+    const templateVars = { message: 'User is already logged in' };
+    return res.status(401).render('error', templateVars);
+  }
+
+  res.render('register');
+});
+
+router.get('/login', (req, res) => {
+  const { user_id } = req.session;
+  if (user_id) {
+    const templateVars = { message: 'User is already logged in' };
+    return res.status(401).render('error', templateVars);
+  }
+
+  res.render('login');
+});
+
+
 router.post('/register', (req, res) => {
   const { name } = req.body;
   if (!name) {
@@ -50,6 +72,9 @@ router.post('/login', (req, res) => {
       }
 
       req.session.user_id = user.id;
+      if (user.is_admin) {
+        req.session.user_isAdmin = user.is_admin;
+      }
       res.redirect('/notes');
     })
     .catch((err) => {
