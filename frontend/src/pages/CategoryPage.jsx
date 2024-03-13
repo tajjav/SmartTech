@@ -372,13 +372,13 @@ const mockData = {
         <Typography color="text.primary">{categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}</Typography>
       </Breadcrumbs>
 
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}> {/* Center your title and add margin-bottom */}
+      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}> 
         Category: {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
       </h1>
 
-      <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px' }}> {/* Center your grid container and restrict its max width */}
+      <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px' }}> 
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product.id} style={{ display: 'flex', justifyContent: 'center', ml: '8px' }}> {/* Center each item and add 'display: flex' for vertical alignment */}
+          <Grid item xs={12} sm={6} md={4} key={product.id} style={{ display: 'flex', justifyContent: 'center', ml: '8px' }}> 
             <ProductCard
               name={product.name}
               description={product.description}

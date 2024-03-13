@@ -28,21 +28,21 @@ function CarouselItem(props) {
   return (
     <Paper
       style={{
-        display: 'flex', // Ensures the content is flexibly designed
-        justifyContent: 'center', // Horizontally centers the content
-        alignItems: 'center', // Vertically centers the content
-        height: '500px', // Adjust height as needed
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center', 
+        height: '500px', 
         width: '100%',
         margin: 'auto',
-        backgroundColor: 'white', // Example background color, adjust as needed
+        backgroundColor: 'white', 
       }}
       elevation={0}
     >
       <img
         src={props.imageUrl}
         style={{
-          maxWidth: '100%', // Ensures image does not exceed the container's width
-          maxHeight: '100%', // Ensures image does not exceed the container's height
+          maxWidth: '100%',
+          maxHeight: '100%', 
           //objectFit: 'contain', // Ensures the image's aspect ratio is maintained
         }}
         alt=""
