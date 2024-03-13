@@ -14,7 +14,7 @@ const CartPage = () => {
         <Typography color="text.primary"> Cart</Typography>
       </Breadcrumbs>
 
-      {/* AboutUs page content goes here */}
+      
     </div>
   );
 };
