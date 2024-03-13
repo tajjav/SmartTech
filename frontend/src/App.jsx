@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-//import Footer from './components/Footer';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import ClearancePage from './pages/ClearancePage';
@@ -21,7 +21,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         
       </Routes>
-      
+      <Footer />
     </Router>
   );
 }

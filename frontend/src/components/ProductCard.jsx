@@ -10,7 +10,12 @@ import Typography from '@mui/joy/Typography';
 
 const ProductCard = ({ name, description, price, imageUrl, stock }) => {
   return (
-    <Card sx={{ width: 320, maxWidth: '100%', boxShadow: 'lg' }}>
+    <Card sx={{ 
+      width: 220, 
+      maxWidth: '150%', 
+      boxShadow: 'lg',
+      ml:'20px'
+       }}>
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 200 }}>
           <img
@@ -55,7 +60,7 @@ const ProductCard = ({ name, description, price, imageUrl, stock }) => {
         </Typography>
       </CardContent>
       <CardOverflow>
-        <Button variant="solid" color="danger" size="lg">
+        <Button variant="solid" color="primary" size="lg">
           Add to cart
         </Button>
       </CardOverflow>

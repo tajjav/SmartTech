@@ -5,91 +5,96 @@ import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
 
 
+
 // Carousel items data, just the images
 const carouselItems = [
-//  {
-    //type: 'iframe', // Indicating this item is an iframe
-   // src: "https://www.canva.com/design/DAF_PiEhPI4/6ZmxnlWI5xzbbcQFrLFeCg/view?embed", // iframe source URL
-   // link: "https://www.canva.com/design/DAF_PiEhPI4/6ZmxnlWI5xzbbcQFrLFeCg/view?utm_content=DAF_PiEhPI4&utm_campaign=designshare&utm_medium=embeds&utm_source=link", // Link for iframe content
-    
- // },
+ 
   {
-    imageUrl: '/images/TV.png',
+    imageUrl: 'images/Banner/Banner2.svg',
   },
   {
-      imageUrl:'/images/Laptop.jpg',
+      imageUrl:'images/Banner/Banner3.svg',
   },
   {
-    imageUrl: '/images/Headphones.png',
+    imageUrl: 'images/Banner/Banner1.svg',
   },
   {
-    imageUrl: '/images/Smartphone1.jpg',
+    imageUrl: 'images/Banner/Banner4.png',
   },
-  {
-    imageUrl: '/images/Tablet1.png',
-  },
+ 
 ];
   
 function CarouselItem(props) {
-  if (props.type === 'iframe') {
-    // Rendering iframe
-    return (
-      <div style={{
-        position: 'relative',
+  return (
+    <Paper
+      style={{
+        display: 'flex', // Ensures the content is flexibly designed
+        justifyContent: 'center', // Horizontally centers the content
+        alignItems: 'center', // Vertically centers the content
+        height: '500px', // Adjust height as needed
         width: '100%',
-        paddingTop: '56.25%', 
-        overflow: 'hidden',
-        borderRadius: '8px',
-        boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
-        margin: '1.6em 0 0.9em 0',
-      }}>
-        <iframe
-          loading="lazy"
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            top: 0,
-            left: 0,
-            border: 'none',
-            padding: 0,
-            margin: 0,
-          }}
-          src={props.src}
-          allowFullScreen
-          allow="fullscreen"
-        ></iframe>
-        <a href={props.link} target="_blank" rel="noopener" style={{ display: 'block', textAlign: 'center', marginTop: '0.5em' }}>
-          Design by {props.designBy}
-        </a>
-      </div>
-    );
-  } else {
-    // Rendering image as before
-    return (
-      <Paper
+        margin: 'auto',
+        backgroundColor: 'white', // Example background color, adjust as needed
+      }}
+      elevation={0}
+    >
+      <img
+        src={props.imageUrl}
         style={{
-          backgroundImage: `url(${props.imageUrl})`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: '300px',
-          width: '100%',
-          margin: 'auto',
+          maxWidth: '100%', // Ensures image does not exceed the container's width
+          maxHeight: '100%', // Ensures image does not exceed the container's height
+          //objectFit: 'contain', // Ensures the image's aspect ratio is maintained
         }}
-        elevation={0}
+        alt=""
       />
-    );
-  }
+    </Paper>
+  );
 }
+const FeaturedDealsBanner = () => {
+  return (
+    <Paper
+      style={{
+        
+        height: '130px', 
+        width: '100%',
+        backgroundImage: 'url(path-to-your-banner-image.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        margin: '20px ',
+        backgroundColor: '#38b6ff' 
+      }}
+    
+    >
+      
+      <a href="link-for-featured-deals" style={{ 
+        
+        display: 'block',
+        height: '100%',
+        width: '100%',
+        textAlign: 'center',
+        lineHeight: '150px', 
+        color: '#5e17eb', 
+        fontWeight: 'bold',
+        fontSize: '30px',
+        fontFamily:'Helvetica',
+        textDecoration: 'none',
 
+      }}>
+        Shop Featured Deals
+      </a>
+    </Paper>
+  );
+};
 
 const mockProducts = [
-  { id: 1, name: 'Smart TV', description: 'A high-quality smart TV', price: '$999', imageUrl: '/images/TV.png' },
-  { id: 2, name: 'Laptop', description: 'A powerful laptop for professionals', price: '$1499', imageUrl: '/images/Laptop.jpg' },
-  { id: 3, name: 'Headphones', description: 'Noise-cancelling headphones', price: '$299', imageUrl: '/images/Headphones.png' },
-  { id: 4, name: 'SmartPhones', description: 'Experience next-gen photography with our best smartphone camera.', price: '$199', imageUrl: '/images/Smartphone1.jpg' },
-  { id: 5, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet1.png' },
+  { id: 1, name: 'Smart TV', description: 'A high-quality smart TV', price: '$999', imageUrl: '/images/TV/TV.png' },
+  { id: 2, name: 'Laptop', description: 'A powerful laptop for professionals', price: '$1499', imageUrl: '/images/Laptop/Laptop.jpg' },
+  { id: 3, name: 'Headphones', description: 'Noise-cancelling headphones', price: '$299', imageUrl: '/images/Headphones/Headphones.png' },
+  { id: 4, name: 'SmartPhones', description: 'Experience next-gen photography with our best smartphone camera.', price: '$199', imageUrl: '/images/Smartphones/Smartphone1.jpg' },
+  { id: 5, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
+  { id: 6, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' }, 
+  { id: 7, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
+  { id: 8, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
 ];
 
 const HomePage = () => {
@@ -100,6 +105,7 @@ const HomePage = () => {
           <CarouselItem key={i} {...item} />
         ))}
       </Carousel>
+      <FeaturedDealsBanner />
       <Grid container spacing={2}>
         {mockProducts.map(product => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
