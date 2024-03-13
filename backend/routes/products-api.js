@@ -1,27 +1,32 @@
 /*
- * All routes for User Data are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /api/users
+ * All routes for Products Data are defined here
+ * Since this file is loaded in server.js into api/products,
+ *   these routes are mounted onto /api/products
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
 const express = require('express');
 const router = express.Router();
-const notesQueries = require('../db/queries/notes');
+const productsQueries = require('../db/queries/products');
+//////////
+// CRUD //
+//////////
 
-// CRUD
-// Create - POST
+// Create a product - POST
 router.post('/', (req, res) => {
-  const { user_id } = req.session;
+  const { user_id, user_isAdmin } = req.session;
   if (!user_id) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
+  if (!user_isAdmin) {
+    return res.status(403).json({message: 'You donot have required permission to perform action'})
+  }
 
-  const { content } = req.body;
-  if (!content) {
+  const { product } = req.body;
+  if (!product) {
     return res
       .status(400)
-      .json({ message: 'All properties must be provided to create a note' });
+      .json({ message: 'All properties must be provided to create a product' });
   }
 
   const newNote = { user_id, content };
