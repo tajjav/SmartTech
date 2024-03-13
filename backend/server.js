@@ -42,12 +42,14 @@ app.use(
 // Note: Feel free to replace the example routes below with your own
 const usersApiRoutes = require('./routes/users-api');
 const notesApiRoutes = require('./routes/notes-api');
+const categoriesApiRoutes = require('./routes/categories-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', usersApiRoutes);
 app.use('/api/notes', notesApiRoutes);
+app.use('/api/categories', categoriesApiRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
