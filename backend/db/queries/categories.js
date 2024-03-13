@@ -25,7 +25,7 @@ const create = (newCategory) => {
 // show all categories
 const showAll = () => {
   const queryString = `
-    SELECT * FROM categories;
+    SELECT id, name FROM categories;
   `;
   
   return db

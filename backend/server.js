@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true })); // for standard form submission
 //     isSass: false, // false => scss, true => sass
 //   })
 // ); // disabled sassMiddleware as we are not rendering from backend
-// app.use(express.static('public')); // disabled as we are not pushing backend public directory
+app.use(express.static('public'));
 app.use(
   cookieSession({
     name: 'session',

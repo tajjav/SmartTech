@@ -1,5 +1,5 @@
 INSERT INTO products (name, description, image_1, image_2, image_3, price_cents, quantity, category_id, brand, model, year, is_clearance) VALUES
-('Samsung 55" 4K Smart TV', 'Crystal-clear colors and stunning detail.', 'samsung_tv1.jpg', 'samsung_tv2.jpg', 'samsung_tv3.jpg', 99999, 20, 1, 'Samsung', 'QLED Q70T', 2021, false),
+('Samsung 55" 4K Smart TV', 'Crystal-clear colors and stunning detail.', 'images/TV.png', 'samsung_tv2.jpg', 'samsung_tv3.jpg', 99999, 20, 1, 'Samsung', 'QLED Q70T', 2021, false),
 ('Sony 65" OLED TV', 'Immerse yourself in true-to-life color and detail.', 'sony_tv1.jpg', 'sony_tv2.jpg', 'sony_tv3.jpg', 159999, 15, 1, 'Sony', 'Bravia A8H', 2020, false),
 ('LG 75" NanoCell 8K TV', 'Vivid colors and lifelike detail.', 'lg_tv1.jpg', 'lg_tv2.jpg', 'lg_tv3.jpg', 249999, 10, 1, 'LG', 'NanoCell 90', 2021, false),
 ('Samsung 50" 4K Smart TV', 'Immersive viewing experience at an affordable price.', 'samsung_tv4.jpg', 'samsung_tv5.jpg', 'samsung_tv6.jpg', 69999, 25, 1, 'Samsung', 'TU7000', 2020, false),
