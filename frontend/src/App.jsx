@@ -9,6 +9,8 @@ import AboutUsPage from './pages/AboutUsPage';
 import CartPage from './pages/CartPage';
 
 
+
+
 function App() {
   return (
     <Router>
@@ -19,6 +21,8 @@ function App() {
         <Route path="/clearance" element={<ClearancePage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/clearance" element={<ClearancePage />} />
+
         
       </Routes>
       <Footer />
