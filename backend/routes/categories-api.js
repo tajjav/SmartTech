@@ -111,8 +111,10 @@ router.post('/:id/edit', (req, res) => {
                                                                           //     .status(401)
                                                                           //     .json({ message: 'Note does not belongs to you!' });
                                                                           // }
-
-      return categoriesQueries.update({ id, name });
+    })                                                                   
+    .then((category) => {
+      const updatedCategory = {id, name};
+      return categoriesQueries.update(updatedCategory);
     })
     .then((updatedCategory) => {
       res.status(201).json({ message: 'Category updated!', category: updatedCategory });
@@ -151,7 +153,7 @@ router.post('/:id/delete', (req, res) => {
       return categoriesQueries.remove(id);
     })
     .then(() => {
-      res.status(204).json();
+      res.status(204).json({message: 'Delete successful'});
     })
     .catch((err) => {
       res
@@ -159,3 +161,5 @@ router.post('/:id/delete', (req, res) => {
         .json({ message: 'Error deleting category', error: err.message });
     });
 });
+
+module.exports = router;

@@ -15,7 +15,7 @@ const create = (newCategory) => {
     VALUES ($1)
     RETURNING *;
   `;
-  const queryParams = [`${name}`];
+  const queryParams = [name];
 
   return db
     .query(queryString,queryParams)
@@ -39,7 +39,7 @@ const showById = (id) => {
     SELECT * FROM categories
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`]
+  const queryParams = [id]
   
   return db
     .query(queryString,queryParams)
@@ -54,11 +54,15 @@ const update = (updatedCategory) => {
     WHERE id = $2
     RETURNING *;
   `;
-  const queryParams = [`${name}, ${id}`];
+  const queryParams = [name, id];
   
   return db
     .query(queryString,queryParams)
-    .then((data) => data.rows[0]);
+    .then((data) => {data.rows[0]
+    
+    console.log('data: ', data);
+    });
+
 };
 
 // delete a category
@@ -67,7 +71,7 @@ const remove = (id) => {
     DELETE FROM categories
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`];
+  const queryParams = [id];
 
   return db
     .query(queryString,queryParams)
