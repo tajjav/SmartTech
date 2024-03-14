@@ -69,4 +69,27 @@ router.delete('/products/:id', async (req, res) => {
     }
 });
 
+// Fetch all products by category ID
+router.get('/:id', async (req, res) => {
+    try {
+        const categoryId = req.params.id;
+        const products = await productsQueries.getProductsByCategory(categoryId);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Fetch products by category ID with optional brand filter
+router.get('/:id/products', async (req, res) => {
+    try {
+        const categoryId = req.params.id;
+        const brand = req.query.brand;
+        const products = await productsQueries.getProductsByCategoryAndBrand(categoryId, brand);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;
