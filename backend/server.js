@@ -46,9 +46,8 @@ app.use(
 const usersApiRoutes = require('./routes/users-api');
 const notesApiRoutes = require('./routes/notes-api');
 const categoriesApiRoutes = require('./routes/categories-api');
-
-
 const productsApiRoutes = require('./routes/products-api');
+const cartRoutes = require('./routes/cart-api');
 
 
 // Mount all resource routes
@@ -57,9 +56,8 @@ const productsApiRoutes = require('./routes/products-api');
 app.use('/api/users', usersApiRoutes);
 app.use('/api/notes', notesApiRoutes);
 app.use('/api/categories', categoriesApiRoutes);
-
-
 app.use('/api/products', productsApiRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Note: mount other resources here, using the same pattern above
 

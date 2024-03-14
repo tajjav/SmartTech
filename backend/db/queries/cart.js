@@ -45,7 +45,7 @@ const showById = (id) => {
     SELECT * FROM cart
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`]
+  const queryParams = [id];
   
   return db
     .query(queryString,queryParams)
@@ -108,7 +108,7 @@ const remove = (id) => {
     DELETE FROM cart
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`];
+  const queryParams = [id];
 
   return db
     .query(queryString,queryParams)
