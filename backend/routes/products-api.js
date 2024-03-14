@@ -3,7 +3,7 @@ const router = express.Router();
 const productsQueries = require('../db/queries/products');
 
 // Create a product
-router.post('/products', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newProduct = req.body;
         const product = await productsQueries.create(newProduct);
@@ -14,7 +14,7 @@ router.post('/products', async (req, res) => {
 });
 
 // Get all products
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const products = await productsQueries.showAll();
         res.json(products);
@@ -24,7 +24,7 @@ router.get('/products', async (req, res) => {
 });
 
 // Get a single product by ID
-router.get('/products/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const productId = req.params.id;
         const product = await productsQueries.showById(productId);
@@ -34,19 +34,12 @@ router.get('/products/:id', async (req, res) => {
     }
 });
 
-// Get products by category ID
-router.get('/category/:id/products', async (req, res) => {
-    try {
-        const categoryId = req.params.id;
-        const products = await productsQueries.showByCategoryId(categoryId);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+
+
+
 
 // Update a product
-router.put('/products/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const productId = req.params.id;
         const updatedProduct = req.body;
@@ -58,8 +51,10 @@ router.put('/products/:id', async (req, res) => {
     }
 });
 
+
+
 // Delete a product
-router.delete('/products/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const productId = req.params.id;
         await productsQueries.remove(productId);
@@ -69,27 +64,18 @@ router.delete('/products/:id', async (req, res) => {
     }
 });
 
-// Fetch all products by category ID
-router.get('/:id', async (req, res) => {
+// Fetch products by brand filter
+router.get('/', async (req, res) => {
     try {
-        const categoryId = req.params.id;
-        const products = await productsQueries.getProductsByCategory(categoryId);
+        const { brand } = req.query;
+        console.log('brand = ', brand);
+        const products = await productsQueries.getProductsByBrand(brand);
         res.json(products);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// Fetch products by category ID with optional brand filter
-router.get('/:id/products', async (req, res) => {
-    try {
-        const categoryId = req.params.id;
-        const brand = req.query.brand;
-        const products = await productsQueries.getProductsByCategoryAndBrand(categoryId, brand);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+
 
 module.exports = router;
