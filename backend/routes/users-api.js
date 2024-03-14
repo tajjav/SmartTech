@@ -39,54 +39,56 @@ router.post('/register', (req, res) => {
   if (!name || !email || !password_hash) {
     return res
       .status(403)
-      .render('error', { message: 'Provide name to register!' });
+      .json({ message: 'Provide missing fields to register!' });
   }
 
-  const newUser = { name };
+  const newUser = { name, email, password_hash, is_admin};
   userQueries
     .register(newUser)
     .then(() => {
-      res.redirect('/login');
+      res.json({message: "User successfully registered"});
     })
     .catch((err) => {
       res
         .status(500)
-        .render('error', { message: `Error registering user: ${err.message}` });
+        .json({ message: `Error registering user ${err.message}`});
     });
 });
 
+// login a user with email
 router.post('/login', (req, res) => {
-  const { name } = req.body;
-  if (!name) {
+  const { email } = req.body;
+  if (!email) {
     return res
       .status(403)
-      .render('error', { message: 'Provide name property to login!' });
+      .json({ message: 'Provide email to login!' });
   }
 
   userQueries
-    .login(name)
+    .login(email)
     .then((user) => {
       console.log('user', user);
       if (!user) {
         return res
           .status(403)
-          .render('error', { message: 'Invalid credentials!' });
+          .json({ message: 'Invalid credentials!' });
       }
 
       req.session.user_id = user.id;
       if (user.is_admin) {
         req.session.user_isAdmin = user.is_admin;
       }
-      res.redirect('/notes');
+      res.json({message: 'Successfully Login'});
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
 });
 
+// logout a user
 router.post('/logout', (req, res) => {
   req.session = null;
-  res.redirect('/login');
+  res.json({message: 'Successfully Logout'});
 });
 
 module.exports = router;
