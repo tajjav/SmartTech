@@ -55,4 +55,15 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+// Get products by category ID
+router.get('/:id/products', async (req, res) => {
+    try {
+        const categoryId = req.params.id;
+        const products = await productsQueries.showByCategoryId(categoryId);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;

@@ -51,7 +51,7 @@ const showAll = () => {
   const queryString = `
     SELECT * FROM products;
   `;
-  
+
   return db
     .query(queryString)
     .then((data) => data.rows);
@@ -63,8 +63,8 @@ const showById = (id) => {
     SELECT * FROM products
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`]
-  
+  const queryParams = [id];
+
   return db
     .query(queryString,queryParams)
     .then((data) => data.rows[0]);
@@ -83,11 +83,12 @@ const showByCategoryId = (category_id) => {
     .then((data) => data.rows);
 };
 
-// update a product
+
 const update = (updatedProduct) => {
   const { id, name, description, image_1, image_2, image_3, price_cents, quantity, category_id, brand, model, year, is_clearance } = updatedProduct;
   const queryString = `
-    UPDATE products SET (
+    UPDATE products
+    SET
       name = $1,
       description = $2,
       image_1 = $3,
@@ -100,8 +101,8 @@ const update = (updatedProduct) => {
       model = $10,
       year = $11,
       is_clearance = $12
-    )
-    WHERE id = $13
+    WHERE
+      id = $13
     RETURNING *;
   `;
   const queryParams = [
@@ -119,11 +120,12 @@ const update = (updatedProduct) => {
     is_clearance,
     id
   ];
-  
+
   return db
-    .query(queryString,queryParams)
+    .query(queryString, queryParams)
     .then((data) => data.rows[0]);
 };
+
 
 // delete a product
 const remove = (id) => {
@@ -138,4 +140,20 @@ const remove = (id) => {
     .then((data) => data.rows);
 };
 
-module.exports = { create, showAll, showById, showByCategoryId, update, remove };
+
+// fetch products by brand
+const getProductsByBrand = (brand) => {
+  const queryString = `
+    SELECT * FROM products
+    WHERE brand = $1;
+  `;
+  const queryParams = [brand];
+
+  return db
+  .query(queryString, queryParams)
+  .then((data) => data.rows);
+}
+
+getProductsByBrand('Sony').then(products => console.log(products)).catch(error => console.error(error));
+
+module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand };
