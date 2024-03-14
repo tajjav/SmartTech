@@ -10,31 +10,33 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require('../db/queries/users');
 
+                                                                                          // render register page, not required for backend
+                                                                                          // router.get('/register', (req, res) => {
+                                                                                          //   const { user_id } = req.session;
+                                                                                          //   if (user_id) {
+                                                                                          //     const templateVars = { message: 'User is already logged in' };
+                                                                                          //     return res.status(401).render('error', templateVars);
+                                                                                          //   }
 
-router.get('/register', (req, res) => {
-  const { user_id } = req.session;
-  if (user_id) {
-    const templateVars = { message: 'User is already logged in' };
-    return res.status(401).render('error', templateVars);
-  }
-
-  res.render('register');
-});
-
-router.get('/login', (req, res) => {
-  const { user_id } = req.session;
-  if (user_id) {
-    const templateVars = { message: 'User is already logged in' };
-    return res.status(401).render('error', templateVars);
-  }
-
-  res.render('login');
-});
+                                                                                          //   res.render('register');
+                                                                                          // });
 
 
+                                                                                          // render login page, not required for backend
+                                                                                          // router.get('/login', (req, res) => {
+                                                                                          //   const { user_id } = req.session;
+                                                                                          //   if (user_id) {
+                                                                                          //     const templateVars = { message: 'User is already logged in' };
+                                                                                          //     return res.status(401).render('error', templateVars);
+                                                                                          //   }
+
+                                                                                          //   res.render('login');
+                                                                                          // });
+
+// create a new user
 router.post('/register', (req, res) => {
-  const { name } = req.body;
-  if (!name) {
+  const { name, email, password_hash, is_admin } = req.body;
+  if (!name || !email || !password_hash) {
     return res
       .status(403)
       .render('error', { message: 'Provide name to register!' });

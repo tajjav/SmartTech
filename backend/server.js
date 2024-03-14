@@ -6,6 +6,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const bcrypt = require("bcryptjs");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
