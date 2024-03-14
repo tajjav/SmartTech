@@ -151,4 +151,17 @@ router.post('/:id/delete', (req, res) => {
     });
 });
 
+// rendering route
+// router.get('/notes', (req, res) => {
+//   const { user_id } = req.session;
+//   if (!user_id) {
+//     const templateVars = { message: 'User is not logged in' };
+//     return res.status(401).render('error', templateVars);
+//   }
+
+//   const templateVars = { user_id };
+//   res.render('notes', templateVars);
+// }); // disabled as we are not rendering from backend
+
+
 module.exports = router;
