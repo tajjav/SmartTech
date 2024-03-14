@@ -3,7 +3,7 @@ const router = express.Router();
 const categoriesQueries = require('../db/queries/categories');
 const productsQueries = require('../db/queries/products'); // Import products queries
 
-router.post('/categories', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newCategory = req.body;
         const category = await categoriesQueries.create(newCategory);
@@ -13,7 +13,7 @@ router.post('/categories', async (req, res) => {
     }
 });
 
-router.get('/categories', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const categories = await categoriesQueries.showAll();
         res.json(categories);
@@ -22,7 +22,7 @@ router.get('/categories', async (req, res) => {
     }
 });
 
-router.get('/categories/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const categoryId = req.params.id;
         const category = await categoriesQueries.showById(categoryId);
@@ -32,7 +32,7 @@ router.get('/categories/:id', async (req, res) => {
     }
 });
 
-router.put('/categories/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const categoryId = req.params.id;
         const updatedCategory = req.body;
@@ -44,7 +44,7 @@ router.put('/categories/:id', async (req, res) => {
     }
 });
 
-router.delete('/categories/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const categoryId = req.params.id;
         await categoriesQueries.remove(categoryId);
@@ -54,27 +54,5 @@ router.delete('/categories/:id', async (req, res) => {
     }
 });
 
-// Fetch all products by category ID
-router.get('/category/:id', async (req, res) => {
-    try {
-        const categoryId = req.params.id;
-        const products = await productsQueries.getProductsByCategory(categoryId);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Fetch products by category ID with optional brand filter
-router.get('/category/:id/products', async (req, res) => {
-    try {
-        const categoryId = req.params.id;
-        const brand = req.query.brand;
-        const products = await productsQueries.getProductsByCategoryAndBrand(categoryId, brand);
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
 module.exports = router;
