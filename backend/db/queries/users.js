@@ -1,6 +1,6 @@
 const db = require('../connection');
 
-// create new user
+// create a new user
 const register = (newUser) => {
   const { name, email, password_hash, is_admin } = newUser;
   const queryString = `
