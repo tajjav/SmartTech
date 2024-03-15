@@ -17,25 +17,12 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const products = await productsQueries.showAll();
+        console.log('products@@@@:', products);
         res.json(products);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
-// Get a single product by ID
-router.get('/:id', async (req, res) => {
-    try {
-        const productId = req.params.id;
-        const product = await productsQueries.showById(productId);
-        res.json(product);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
-
 
 
 // Update a product
@@ -65,17 +52,30 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Fetch products by brand filter
-router.get('/', async (req, res) => {
+router.get('/brands/:brand', async (req, res) => {
+    console.log('req: ', req);
     try {
-        const { brand } = req.query;
+        const { brand } = req.params;
+        console.log('req: ', req);
         console.log('brand = ', brand);
         const products = await productsQueries.getProductsByBrand(brand);
+        console.log('products:', products);
         res.json(products);
+    } catch (error) {
+        res.status(200).json({ error: error.message });
+    }
+});
+
+//Get a single product by ID
+router.get('/:id', async (req, res) => {
+    console.log("Get ID route");
+    try {
+        const productId = req.params.id;
+        const product = await productsQueries.showById(productId);
+        res.json(product);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
-
 
 module.exports = router;

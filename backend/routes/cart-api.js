@@ -3,7 +3,7 @@ const router = express.Router();
 const cartQueries = require('../db/queries/cart');
 
 // Create a line item in the cart
-router.post('/cart', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newLineItem = req.body;
         const lineItem = await cartQueries.create(newLineItem);
@@ -14,7 +14,7 @@ router.post('/cart', async (req, res) => {
 });
 
 // Get all line items in the cart
-router.get('/cart', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const lineItems = await cartQueries.showAll();
         res.json(lineItems);
@@ -24,7 +24,7 @@ router.get('/cart', async (req, res) => {
 });
 
 // Get a single line item by ID
-router.get('/cart/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const lineItemId = req.params.id;
         const lineItem = await cartQueries.showById(lineItemId);
@@ -35,7 +35,7 @@ router.get('/cart/:id', async (req, res) => {
 });
 
 // Get line items by order ID
-router.get('/cart/order/:orderId', async (req, res) => {
+router.get('/order/:orderId', async (req, res) => {
     try {
         const orderId = req.params.orderId;
         const lineItems = await cartQueries.showByOrderId(orderId);
@@ -46,7 +46,7 @@ router.get('/cart/order/:orderId', async (req, res) => {
 });
 
 // Get line items by product ID
-router.get('/cart/product/:productId', async (req, res) => {
+router.get('/product/:productId', async (req, res) => {
     try {
         const productId = req.params.productId;
         const lineItems = await cartQueries.showByProductId(productId);
@@ -57,7 +57,7 @@ router.get('/cart/product/:productId', async (req, res) => {
 });
 
 // Update a line item in the cart
-router.put('/cart/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const lineItemId = req.params.id;
         const updatedLineItem = req.body;
@@ -70,7 +70,7 @@ router.put('/cart/:id', async (req, res) => {
 });
 
 // Delete a line item from the cart
-router.delete('/cart/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const lineItemId = req.params.id;
         await cartQueries.remove(lineItemId);

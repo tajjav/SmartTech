@@ -33,7 +33,7 @@ const showAll = () => {
   const queryString = `
     SELECT * FROM cart;
   `;
-  
+
   return db
     .query(queryString)
     .then((data) => data.rows);
@@ -46,7 +46,7 @@ const showById = (id) => {
     WHERE id = $1;
   `;
   const queryParams = [id];
-  
+
   return db
     .query(queryString,queryParams)
     .then((data) => data.rows[0]);
@@ -82,11 +82,11 @@ const showByProductId = (product_id) => {
 const update = (updatedLineItem) => {
   const { id, quantity, product_id, order_id } = updatedLineItem;
   const queryString = `
-    UPDATE cart SET (
+    UPDATE cart
+    SET
       quantity = $1,
       product_id = $2,
       order_id = $3
-    )
     WHERE id = $4
     RETURNING *;
   `;
@@ -96,9 +96,9 @@ const update = (updatedLineItem) => {
     order_id,
     id
   ];
-  
+
   return db
-    .query(queryString,queryParams)
+    .query(queryString, queryParams)
     .then((data) => data.rows[0]);
 };
 

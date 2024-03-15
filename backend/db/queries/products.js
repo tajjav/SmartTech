@@ -151,9 +151,11 @@ const getProductsByBrand = (brand) => {
 
   return db
   .query(queryString, queryParams)
-  .then((data) => data.rows);
+  .then((data) => {
+    console.log('data.rows:', data.rows)
+    return data.rows});
+
 }
 
-getProductsByBrand('Sony').then(products => console.log(products)).catch(error => console.error(error));
 
 module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand };
