@@ -15,5 +15,5 @@ CREATE TABLE products (
     is_clearance BOOLEAN,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
