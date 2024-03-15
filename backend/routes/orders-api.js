@@ -3,9 +3,10 @@ const router = express.Router();
 const ordersQueries = require('../db/queries/orders');
 
 // Create a new order
-router.post('/orders', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const newOrder = req.body;
+        const { user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received } = req.body;
+        const newOrder = {user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received};
         const order = await ordersQueries.create(newOrder);
         res.json(order);
     } catch (error) {
@@ -14,7 +15,7 @@ router.post('/orders', async (req, res) => {
 });
 
 // Get all orders
-router.get('/orders', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const orders = await ordersQueries.showAll();
         res.json(orders);
@@ -24,7 +25,7 @@ router.get('/orders', async (req, res) => {
 });
 
 // Get a single order by ID
-router.get('/orders/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const orderId = req.params.id;
         const order = await ordersQueries.showById(orderId);
@@ -35,7 +36,7 @@ router.get('/orders/:id', async (req, res) => {
 });
 
 // Get orders by user ID
-router.get('/orders/user/:userId', async (req, res) => {
+router.get('/users/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
         const orders = await ordersQueries.showByUserId(userId);
@@ -46,7 +47,7 @@ router.get('/orders/user/:userId', async (req, res) => {
 });
 
 // Get orders by email
-router.get('/orders/email/:email', async (req, res) => {
+router.get('/emails/:email', async (req, res) => {
     try {
         const email = req.params.email;
         const orders = await ordersQueries.showByEmail(email);
@@ -56,11 +57,14 @@ router.get('/orders/email/:email', async (req, res) => {
     }
 });
 
+
+
 // Update an existing order
-router.put('/orders/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const orderId = req.params.id;
-        const updatedOrder = req.body;
+        const { user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received } = req.body;
+        const updatedOrder = {user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received};
         updatedOrder.id = orderId;
         const order = await ordersQueries.update(updatedOrder);
         res.json(order);
