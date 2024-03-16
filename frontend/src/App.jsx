@@ -7,34 +7,25 @@ import CategoryPage from './pages/CategoryPage';
 import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-
-
-
+import ShoppingCartPage from './pages/ShoppingCartPage'; 
+import { StoreProvider } from './context/StoreContext'; 
 
 function App() {
   return (
-    <Router>
-    <NavBar /> 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/category/:categoryId" element={<CategoryPage />} />
-        <Route path="/clearance" element={<ClearancePage />} />
-        <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/clearance" element={<ClearancePage />} />
-        <Route path="/product/:productId" element={<ProductDetailPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-
-
-
-        
-      </Routes>
-      
-      
-    <Footer />
-    </Router>
+    <StoreProvider>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/category/:categoryId" element={<CategoryPage />} />
+          <Route path="/clearance" element={<ClearancePage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<ShoppingCartPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </StoreProvider>
   );
 }
 
