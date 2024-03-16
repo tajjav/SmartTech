@@ -1,14 +1,12 @@
-// LoginPage.jsx
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Button, TextField, FormControlLabel, Checkbox, Typography, Container } from '@mui/material';
 
+const SignupPage = () => {
 
-const LoginPage = () => {
-  
-  const handleLogin = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
-    
+ 
   };
 
   return (
@@ -22,9 +20,9 @@ const LoginPage = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Login
+          Sign Up
         </Typography>
-        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSignup} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -46,25 +44,21 @@ const LoginPage = () => {
             autoComplete="current-password"
           />
           
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign Up
           </Button>
-          <RouterLink to="/signup">
-            {"Don't have an account? Sign Up"}
-          </RouterLink>
+          {/* Link to login page if the user already has an account */}
         </Box>
       </Box>
     </Container>
   );
 };
 
-export default LoginPage;
+
+
+export default SignupPage;

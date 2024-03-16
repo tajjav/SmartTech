@@ -7,6 +7,8 @@ import CategoryPage from './pages/CategoryPage';
 import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 
 
@@ -22,12 +24,16 @@ function App() {
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/clearance" element={<ClearancePage />} />
         <Route path="/product/:productId" element={<ProductDetailPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
 
 
 
         
       </Routes>
-      <Footer />
+      
+      
+    <Footer />
     </Router>
   );
 }

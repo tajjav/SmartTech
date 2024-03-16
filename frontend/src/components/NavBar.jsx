@@ -121,7 +121,7 @@ const NavBar = () => {
           aria-haspopup="true"
           color="inherit"
           component={Link}
-          to="/account"
+          to="/login"
         >
           <AccountCircle />
         </IconButton>
