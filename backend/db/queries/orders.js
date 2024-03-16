@@ -49,7 +49,7 @@ const showById = (id) => {
     SELECT * FROM orders
     WHERE id = $1;
   `;
-  const queryParams = [`${id}`]
+  const queryParams = [id]
   
   return db
     .query(queryString,queryParams)
@@ -86,14 +86,15 @@ const showByEmail = (email) => {
 const update = (updatedOrder) => {
   const { id, user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received } = updatedOrder;
   const queryString = `
-    UPDATE orders SET (
+    UPDATE orders 
+    SET 
       user_id = $1,
       email = $2,
       stripe_charge_id = $3,
       payment_amount_cents = $4,
       is_payment_received = $5
-    ) 
-    WHERE id = $6
+    WHERE 
+      id = $6
     RETURNING *;
   `;
   const queryParams = [
