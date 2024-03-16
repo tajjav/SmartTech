@@ -4,6 +4,7 @@ import { Grid, Typography, Button, Paper, Box, IconButton, Divider } from '@mui/
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mockData from '../data/mockData';
+import { useStore } from '../context/StoreContext';
 
 const fetchProductDetails = (productId) => {
   const allProducts = Object.values(mockData).flat();
