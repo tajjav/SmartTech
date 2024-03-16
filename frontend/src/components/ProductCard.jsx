@@ -7,8 +7,9 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+import { Link as RouterLink } from 'react-router-dom'; 
 
-const ProductCard = ({ name, description, price, imageUrl, stock, clearance = false, clearancePrice = '', showOnMainPage = true }) => {
+const ProductCard = ({ productId, name, description, price, imageUrl, stock, clearance = false, clearancePrice = '', showOnMainPage = true, }) => {
   // Render the card only if it's marked for the main products page or it's a clearance item
   if (!showOnMainPage && !clearance) {
     return null;
@@ -31,27 +32,26 @@ const ProductCard = ({ name, description, price, imageUrl, stock, clearance = fa
       </CardOverflow>
       <CardContent>
         <Typography level="body-xs">{description}</Typography>
-        <Link
-          href="#"
-          fontWeight="md"
-          color="neutral"
-          textColor="text.primary"
-          overlay
-        >
-          {name}
-        </Link>
+        <RouterLink to={`/product/${productId}`} style={{ textDecoration: 'none' }}>
+          <Typography
+            level="h6"
+            component="div"
+            fontWeight="md"
+            color="neutral"
+            textColor="text.primary"
+          >
+            {name}
+          </Typography>
+        </RouterLink>
 
-        {/* Check if the item is on clearance */}
         {clearance ? (
           <>
-            {/* Display the original price struck through */}
             <Typography
               level="body-sm"
               sx={{ textDecoration: 'line-through', display: 'block' }}
             >
-              {price} {/* Original price */}
+              {price}
             </Typography>
-            {/* Display the clearance price */}
             <Typography
               level="title-lg"
               sx={{ mt: 1, fontWeight: 'xl', color: 'danger.main' }}
@@ -60,7 +60,6 @@ const ProductCard = ({ name, description, price, imageUrl, stock, clearance = fa
             </Typography>
           </>
         ) : (
-          /* For non-clearance items, just display the price as usual */
           <Typography
             level="title-lg"
             sx={{ mt: 1, fontWeight: 'xl' }}
@@ -80,13 +79,13 @@ const ProductCard = ({ name, description, price, imageUrl, stock, clearance = fa
           </Typography>
         )}
 
-        {/* Additional note about stock for non-clearance items */}
         {!clearance && stock < 10 && (
           <Typography level="body-sm">
-            `(Only ${stock} left in stock!)`
+            Only {stock} left in stock!
           </Typography>
         )}
       </CardContent>
+      
       <CardOverflow>
         <Button variant="solid" color="primary" size="lg">
           Add to cart

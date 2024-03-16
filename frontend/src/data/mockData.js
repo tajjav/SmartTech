@@ -5,7 +5,12 @@ const mockData = {
       name: 'Smart OLED TV',
       description: 'Experience true color with OLED technology',
       price: '$999',
-      imageUrl: '/images/TV/TV.png', 
+      imageUrl:'/images/TV/TV.png',
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ], 
       clearance: false,
     },
     {
@@ -14,6 +19,11 @@ const mockData = {
       description: '4K High Dynamic Range for stunning picture quality',
       price: '$1299',
       imageUrl: '/images/TV/TV.png',
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -22,6 +32,11 @@ const mockData = {
       description: 'Experience true color with OLED technology',
       price: '$999',
       imageUrl: '/images/TV/TV.png', 
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -30,6 +45,11 @@ const mockData = {
       description: '4K High Dynamic Range for stunning picture quality',
       price: '$1299',
       imageUrl: '/images/TV/TV.png',
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -38,6 +58,11 @@ const mockData = {
       description: 'Experience true color with OLED technology',
       price: '$999',
       imageUrl: '/images/TV/TV.png', 
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -46,6 +71,11 @@ const mockData = {
       description: '4K High Dynamic Range for stunning picture quality',
       price: '$1299',
       imageUrl: '/images/TV/TV.png',
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -54,6 +84,11 @@ const mockData = {
       description: 'Experience true color with OLED technology',
       price: '$999',
       imageUrl: '/images/TV/TV.png', 
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -62,6 +97,11 @@ const mockData = {
       description: '4K High Dynamic Range for stunning picture quality',
       price: '$1299',
       imageUrl: '/images/TV/TV.png',
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: false,
     },
     {
@@ -70,6 +110,11 @@ const mockData = {
       description: 'Experience true color with OLED technology',
       price: '$999',
       imageUrl: '/images/TV/TV.png', 
+      additionalImages:  [
+        '/images/TV/TV.png',
+      '/images/TV/TV.png', 
+      '/images/TV/TV.png', 
+    ],
       clearance: true,
     },
     
@@ -82,6 +127,11 @@ const mockData = {
       description: 'High-performance gaming laptop with top-of-the-line specs',
       price: '$1999',
       imageUrl:'/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -90,6 +140,11 @@ const mockData = {
       description: 'Sleek ultrabook with all-day battery life',
       price: '$1499',
       imageUrl: '/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     }, 
     {
@@ -98,6 +153,11 @@ const mockData = {
       description: 'High-performance gaming laptop with top-of-the-line specs',
       price: '$1999',
       imageUrl:'/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -106,6 +166,11 @@ const mockData = {
       description: 'Sleek ultrabook with all-day battery life',
       price: '$1499',
       imageUrl: '/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -114,6 +179,11 @@ const mockData = {
       description: 'High-performance gaming laptop with top-of-the-line specs',
       price: '$1999',
       imageUrl:'/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -122,6 +192,11 @@ const mockData = {
       description: 'Sleek ultrabook with all-day battery life',
       price: '$1499',
       imageUrl: '/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -130,6 +205,11 @@ const mockData = {
       description: 'High-performance gaming laptop with top-of-the-line specs',
       price: '$1999',
       imageUrl:'/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -138,6 +218,11 @@ const mockData = {
       description: 'Sleek ultrabook with all-day battery life',
       price: '$1499',
       imageUrl: '/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: false,
     },
     {
@@ -146,6 +231,11 @@ const mockData = {
       description: 'High-performance gaming laptop with top-of-the-line specs',
       price: '$1999',
       imageUrl:'/images/Laptop/Laptop.jpg',
+      additionalImages:  [
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+        '/images/Laptop/Laptop.jpg',
+    ],
       clearance: true,
     },
    
@@ -159,6 +249,11 @@ const mockData = {
       description: 'Immerse yourself in sound with industry-leading noise cancellation.',
       price: '$299',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -167,6 +262,11 @@ const mockData = {
       description: 'True wireless earbuds with unparalleled sound quality.',
       price: '$199',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -175,6 +275,11 @@ const mockData = {
       description: 'Immerse yourself in sound with industry-leading noise cancellation.',
       price: '$299',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -183,6 +288,11 @@ const mockData = {
       description: 'True wireless earbuds with unparalleled sound quality.',
       price: '$199',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },{
       id: 'headphone5',
@@ -190,6 +300,11 @@ const mockData = {
       description: 'Immerse yourself in sound with industry-leading noise cancellation.',
       price: '$299',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -198,6 +313,11 @@ const mockData = {
       description: 'True wireless earbuds with unparalleled sound quality.',
       price: '$199',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -206,6 +326,11 @@ const mockData = {
       description: 'Immerse yourself in sound with industry-leading noise cancellation.',
       price: '$299',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },
     {
@@ -214,6 +339,11 @@ const mockData = {
       description: 'True wireless earbuds with unparalleled sound quality.',
       price: '$199',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: false,
     },{
       id: 'headphone9',
@@ -221,6 +351,11 @@ const mockData = {
       description: 'Immerse yourself in sound with industry-leading noise cancellation.',
       price: '$299',
       imageUrl: '/images/Headphones/Headphones.png',
+      additionalImages:  [
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+        '/images/Headphones/Headphones.png',
+    ],
       clearance: true,
 
     },
@@ -234,6 +369,11 @@ const mockData = {
         description: 'Experience next-gen photography with our best smartphone camera.',
         price: '$999',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       },
       {
@@ -242,6 +382,11 @@ const mockData = {
         description: 'Futuristic design with a foldable screen.',
         price: '$1499',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       }, 
       {
@@ -250,6 +395,11 @@ const mockData = {
         description: 'Experience next-gen photography with our best smartphone camera.',
         price: '$999',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       },
       {
@@ -258,6 +408,11 @@ const mockData = {
         description: 'Futuristic design with a foldable screen.',
         price: '$1499',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       }, 
       {
@@ -266,6 +421,11 @@ const mockData = {
         description: 'Experience next-gen photography with our best smartphone camera.',
         price: '$999',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       },
       {
@@ -274,6 +434,11 @@ const mockData = {
         description: 'Futuristic design with a foldable screen.',
         price: '$1499',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       }, 
       {
@@ -282,6 +447,11 @@ const mockData = {
         description: 'Experience next-gen photography with our best smartphone camera.',
         price: '$999',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       },
       {
@@ -290,6 +460,11 @@ const mockData = {
         description: 'Futuristic design with a foldable screen.',
         price: '$1499',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: false,
       },
        {
@@ -298,6 +473,11 @@ const mockData = {
         description: 'Experience next-gen photography with our best smartphone camera.',
         price: '$999',
         imageUrl: '/images/Smartphones/Smartphone1.jpg',
+        additionalImages:  [
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          '/images/Smartphones/Smartphone1.jpg',
+          ],
         clearance: true,
       },
       
@@ -310,6 +490,11 @@ const mockData = {
         description: 'A powerful tablet with a stunning display.',
         price: '$799',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       },
       {
@@ -318,6 +503,11 @@ const mockData = {
         description: 'Lightweight and perfect for entertainment on the go.',
         price: '$499',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       }, 
       {
@@ -326,6 +516,11 @@ const mockData = {
         description: 'A powerful tablet with a stunning display.',
         price: '$799',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       },
       {
@@ -334,6 +529,11 @@ const mockData = {
         description: 'Lightweight and perfect for entertainment on the go.',
         price: '$499',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       }, 
       {
@@ -342,6 +542,11 @@ const mockData = {
         description: 'A powerful tablet with a stunning display.',
         price: '$799',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       },
       {
@@ -350,6 +555,11 @@ const mockData = {
         description: 'Lightweight and perfect for entertainment on the go.',
         price: '$499',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       }, 
       {
@@ -358,6 +568,11 @@ const mockData = {
         description: 'A powerful tablet with a stunning display.',
         price: '$799',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: false,
       },
       {
@@ -366,6 +581,11 @@ const mockData = {
         description: 'Lightweight and perfect for entertainment on the go.',
         price: '$499',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: true,
       }, 
       {
@@ -374,6 +594,11 @@ const mockData = {
         description: 'A powerful tablet with a stunning display.',
         price: '$799',
         imageUrl: '/images/Tablet/Tablet1.png',
+        additionalImages:  [
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          '/images/Tablet/Tablet1.png',
+          ],
         clearance: true,
       },
       

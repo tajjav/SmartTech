@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
-import CartPage from './pages/CartPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 
 
@@ -20,8 +20,10 @@ function App() {
         <Route path="/category/:categoryId" element={<CategoryPage />} />
         <Route path="/clearance" element={<ClearancePage />} />
         <Route path="/about" element={<AboutUsPage />} />
-        <Route path="/cart" element={<CartPage />} />
         <Route path="/clearance" element={<ClearancePage />} />
+        <Route path="/product/:productId" element={<ProductDetailPage />} />
+
+
 
         
       </Routes>

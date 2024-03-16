@@ -380,6 +380,7 @@ const mockData = {
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id} style={{ display: 'flex', justifyContent: 'center', ml: '8px' }}> 
             <ProductCard
+              productId={product.id} 
               name={product.name}
               description={product.description}
               price={product.price}
