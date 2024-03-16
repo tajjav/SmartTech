@@ -1,39 +1,63 @@
-import React from 'react';
-import { useStore } from '../context/StoreContext'; 
-import { Box, Typography, Button, List, ListItem, ListItemText } from '@mui/material';
-
+import React, { useContext, useState, useEffect } from 'react';
+import { Grid, Typography, Button, Card, CardContent, CardMedia, IconButton, Paper } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { StoreContext } from '../context/StoreContext';
 
 const ShoppingCartPage = () => {
-  const { cartItems } = useStore();
+  const { cart, updateQuantity, calculateTotal } = useContext(StoreContext);
+  const [cartItems, setCartItems] = useState([]);
 
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
+  useEffect(() => {
+    setCartItems(cart);
+  }, [cart]);
+
+  const handleQuantityChange = (item, increment) => {
+    const newQuantity = Math.max(item.quantity + increment, 0);
+    if (newQuantity > 0) {
+      updateQuantity(item.id, newQuantity);
+    } else {
+    }
   };
 
   return (
-    <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Shopping Cart
-      </Typography>
-      {cartItems.length === 0 ? (
-        <Typography>Your cart is empty.</Typography>
-      ) : (
-        <List>
-          {cartItems.map(item => (
-            <ListItem key={item.id}>
-              <ListItemText primary={item.name} secondary={`Quantity: ${item.quantity}`} />
-              <Typography variant="body1">${item.price}</Typography>
-            </ListItem>
-          ))}
-          <ListItem>
-            <Typography variant="h6">Total: ${calculateTotal()}</Typography>
-          </ListItem>
-        </List>
-      )}
-      <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-        Checkout
-      </Button>
-    </Box>
+    <Grid container spacing={2} justifyContent="center" alignItems="center" sx={{ padding: '20px' }}>
+      {cartItems.map((item) => (
+        <Grid item container xs={12} spacing={2} key={item.id} sx={{ marginBottom: 2 }}>
+          <Grid item xs={12} sm={4} lg={3}>
+            <CardMedia
+              component="img"
+              image={item.imageUrl}
+              alt={item.name}
+              sx={{ height: 140, objectFit: 'contain', maxWidth: '100%' }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5} lg={6}>
+            <Typography variant="h6">{item.name}</Typography>
+            <Typography color="text.secondary">{item.description}</Typography>
+          </Grid>
+          <Grid item xs={12} sm={3} lg={3} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <IconButton onClick={() => handleQuantityChange(item, -1)} size="large">
+              <RemoveIcon />
+            </IconButton>
+            <Typography>{item.quantity}</Typography>
+            <IconButton onClick={() => handleQuantityChange(item, 1)} size="large">
+              <AddIcon />
+            </IconButton>
+            <Typography variant="h6" sx={{ marginTop: 1 }}>{item.price}</Typography>
+          </Grid>
+        </Grid>
+      ))}
+      <Grid item xs={12} sm={8} md={6} lg={4}>
+        <Paper sx={{ padding: 2, marginTop: 2 }}>
+          <Typography variant="h5" sx={{ marginBottom: 2 }}>Order Summary</Typography>
+          <Typography variant="h6">Subtotal: ${calculateTotal()}</Typography>
+          <Button variant="contained" color="primary" sx={{ width: '100%', marginTop: 2 }}>
+            Checkout
+          </Button>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 

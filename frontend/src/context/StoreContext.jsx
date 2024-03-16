@@ -1,30 +1,52 @@
-// src/context/StoreContext.js
 import React, { createContext, useContext, useState } from 'react';
+import mockData from '../data/mockData'; // Adjust the import path as necessary
 
-const StoreContext = createContext();
+export const StoreContext = createContext(null);
+
+export const useStore = () => useContext(StoreContext);
 
 export const StoreProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // Example: Initialize cart with the first item from each category
+  const initialCartItems = [
+    { ...mockData.tvs[0], quantity: 1 },
+    { ...mockData.laptops[0], quantity: 1 },
+    { ...mockData.headphones[0], quantity: 1 },
+    { ...mockData.smartphones[0], quantity: 1 },
+    { ...mockData.tablets[0], quantity: 1 }
+  ];
+
+  const [cart, setCart] = useState(initialCartItems);
 
   const addToCart = (product, quantity) => {
-    setCartItems(currentItems => {
-      const itemIndex = currentItems.findIndex(item => item.id === product.id);
-      if (itemIndex > -1) {
-        // Product already exists in cart, update quantity
-        const updatedItems = [...currentItems];
-        updatedItems[itemIndex].quantity += quantity;
-        return updatedItems;
+    setCart((prevCart) => {
+      const existingIndex = prevCart.findIndex((item) => item.id === product.id);
+      if (existingIndex !== -1) {
+        // Update quantity if the product exists
+        const updatedCart = [...prevCart];
+        updatedCart[existingIndex].quantity += quantity;
+        return updatedCart;
+      } else {
+        // Add new product to the cart
+        return [...prevCart, { ...product, quantity }];
       }
-      // Product not in cart, add as new item
-      return [...currentItems, { ...product, quantity }];
     });
   };
 
+  const updateQuantity = (productId, quantity) => {
+    setCart((prevCart) => prevCart.map((item) =>
+      item.id === productId ? { ...item, quantity: Math.max(quantity, 0) } : item
+    ));
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.quantity * parseFloat(item.price.replace('$', '')), 0).toFixed(2);
+  };
+
   return (
-    <StoreContext.Provider value={{ cartItems, addToCart }}>
+    <StoreContext.Provider value={{ cart, addToCart, updateQuantity, calculateTotal }}>
       {children}
     </StoreContext.Provider>
   );
 };
 
-export const useStore = () => useContext(StoreContext);
+export default StoreProvider;
