@@ -17,6 +17,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1); // State for managing quantity
   const navigate = useNavigate();
+   const { addToCart } = useStore(); 
 
   useEffect(() => {
     const productDetails = fetchProductDetails(productId);
@@ -24,15 +25,19 @@ const ProductDetailPage = () => {
   }, [productId]);
 
 // Back to product Button
-  const category = productId.replace(/[0-9]/g, '');
-
   const handleBack = () => {
-
+    const category = productId.replace(/[0-9]/g, '');
     navigate(`/category/${category}s`.toLowerCase());
   };
+  
  //Quanity
   const increaseQuantity = () => setQuantity(qty => qty + 1);
   const decreaseQuantity = () => setQuantity(qty => Math.max(qty - 1, 1));
+  
+    const handleAddToCart = () => {
+    addToCart(product, quantity); // Call addToCart when the button is clicked
+    navigate('/cart'); //Redirect to the cart page
+  };
 
   if (!product) {
     return <Typography>Loading...</Typography>;
@@ -83,6 +88,7 @@ const ProductDetailPage = () => {
             color="primary"
             startIcon={<ShoppingCartIcon />}
             sx={{ padding: '10px 50px' }}
+            onClick={handleAddToCart} 
           >
             Add to Cart
           </Button>
