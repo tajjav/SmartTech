@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Typography, Button, Card, CardContent, CardMedia, IconButton, Paper } from '@mui/material';
+import { Grid, Typography, Button, Card, CardContent, CardMedia, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { StoreContext } from '../context/StoreContext';
@@ -9,55 +9,62 @@ const ShoppingCartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Assuming cart is being populated from the StoreContext
     setCartItems(cart);
   }, [cart]);
 
   const handleQuantityChange = (item, increment) => {
-    const newQuantity = Math.max(item.quantity + increment, 0);
-    if (newQuantity > 0) {
-      updateQuantity(item.id, newQuantity);
-    } else {
-      // Optionally remove the item from the cart if quantity reaches 0
-    }
+    const newQuantity = item.quantity + increment;
+    updateQuantity(item.id, newQuantity);
+  };
+
+  const formatPrice = (price) => {
+    return price.includes('$') ? price : `$${price}`;
   };
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center" sx={{ padding: '20px' }}>
-      {cartItems.map((item) => (
-        <Grid item container xs={12} spacing={2} key={item.id} sx={{ marginBottom: 2 }}>
-          <Grid item xs={12} sm={4} lg={3}>
-            <CardMedia
-              component="img"
-              image={item.imageUrl}
-              alt={item.name}
-              sx={{ height: 140, objectFit: 'contain', maxWidth: '100%' }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={5} lg={6}>
-            <Typography variant="h6">{item.name}</Typography>
-            <Typography color="text.secondary">{item.description}</Typography>
-          </Grid>
-          <Grid item xs={12} sm={3} lg={3} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <IconButton onClick={() => handleQuantityChange(item, -1)} size="large">
-              <RemoveIcon />
-            </IconButton>
-            <Typography>{item.quantity}</Typography>
-            <IconButton onClick={() => handleQuantityChange(item, 1)} size="large">
-              <AddIcon />
-            </IconButton>
-            <Typography variant="h6" sx={{ marginTop: 1 }}>{item.price}</Typography>
-          </Grid>
-        </Grid>
-      ))}
-      <Grid item xs={12} sm={8} md={6} lg={4}>
-        <Paper sx={{ padding: 2, marginTop: 2 }}>
-          <Typography variant="h5" sx={{ marginBottom: 2 }}>Order Summary</Typography>
-          <Typography variant="h6">Subtotal: ${calculateTotal()}</Typography>
-          <Button variant="contained" color="primary" sx={{ width: '100%', marginTop: 2 }}>
-            Check
-          </Button>
-        </Paper>
+    <Grid container spacing={2} justifyContent="center" sx={{ padding: '20px' }}>
+      <Grid item xs={12} md={8}>
+        {cartItems.map((item) => (
+          <Card key={item.id} sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
+            <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <CardMedia
+                component="img"
+                image={item.imageUrl}
+                alt={item.name}
+                sx={{ width: '100px', height: '100px', objectFit: 'contain' }}
+              />
+              <Typography variant="subtitle1" sx={{ flex: '1 1 auto', marginLeft: '16px' }}>
+                {item.name}
+              </Typography>
+              <Typography variant="subtitle1">
+                {item.description}
+              </Typography>
+              <IconButton onClick={() => handleQuantityChange(item, -1)}>
+                <RemoveIcon />
+              </IconButton>
+              <Typography variant="subtitle1">{item.quantity}</Typography>
+              <IconButton onClick={() => handleQuantityChange(item, 1)}>
+                <AddIcon />
+              </IconButton>
+              <Typography variant="subtitle1">{formatPrice(item.price)}</Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Card sx={{ position: 'sticky', top: '20px' }}>
+          <CardContent>
+            <Typography variant="h6" sx={{ marginBottom: 2 }}>
+              Order Summary
+            </Typography>
+            <Typography variant="subtitle1">
+              Subtotal: {formatPrice(calculateTotal())}
+            </Typography>
+            <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+              Checkout
+            </Button>
+          </CardContent>
+        </Card>
       </Grid>
     </Grid>
   );
