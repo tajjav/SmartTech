@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useContext }  from 'react';
 import ProductCard from '../components/ProductCard';
 import { Grid } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button } from '@mui/material';
+
 
 
 

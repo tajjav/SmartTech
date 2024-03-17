@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 
 
-const categories = ['TVs', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
+const categories = ['TV', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
