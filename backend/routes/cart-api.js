@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Get line items by order ID
-router.get('/order/:orderId', async (req, res) => {
+router.get('/orders/:orderId', async (req, res) => {
     try {
         const orderId = req.params.orderId;
         const lineItems = await cartQueries.showByOrderId(orderId);
@@ -46,7 +46,7 @@ router.get('/order/:orderId', async (req, res) => {
 });
 
 // Get line items by product ID
-router.get('/product/:productId', async (req, res) => {
+router.get('/products/:productId', async (req, res) => {
     try {
         const productId = req.params.productId;
         const lineItems = await cartQueries.showByProductId(productId);
