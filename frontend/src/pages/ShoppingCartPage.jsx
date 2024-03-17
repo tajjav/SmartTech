@@ -55,7 +55,7 @@ const ShoppingCartPage = () => {
           <Typography variant="h5" sx={{ marginBottom: 2 }}>Order Summary</Typography>
           <Typography variant="h6">Subtotal: ${calculateTotal()}</Typography>
           <Button variant="contained" color="primary" sx={{ width: '100%', marginTop: 2 }}>
-            Checkout
+            Check
           </Button>
         </Paper>
       </Grid>
