@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 const bcrypt = require("bcryptjs");
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -20,7 +21,8 @@ const app = express();
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // for standard form submissions, non ajax
+app.use(express.urlencoded({ extended: true }));
+ // for standard form submissions, non ajax
 // app.use(
 //   '/styles',
 //   sassMiddleware({

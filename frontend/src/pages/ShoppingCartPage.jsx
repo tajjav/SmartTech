@@ -1,31 +1,42 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Grid, Typography, Button, Card, CardContent, CardMedia, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { StoreContext } from '../context/StoreContext';
+import { StoreContext } from '../context/StoreContext'; // Adjust if necessary
 
 const ShoppingCartPage = () => {
-  const { cart, updateQuantity, calculateTotal } = useContext(StoreContext);
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    setCartItems(cart);
-  }, [cart]);
+  const { state: { cart }, updateQuantity, calculateTotal } = useContext(StoreContext);
 
   const handleQuantityChange = (item, increment) => {
     const newQuantity = item.quantity + increment;
-    updateQuantity(item.id, newQuantity);
+    // Ensure the quantity does not go below 1
+    if (newQuantity >= 1) {
+      updateQuantity(item.productId, newQuantity);
+    }
   };
 
   const formatPrice = (price) => {
-    return price.includes('$') ? price : `$${price}`;
+    // Assuming price is a number. Adjust if your setup is different
+    return `$${price.toFixed(2)}`;
   };
 
   return (
+
+    <div>
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link component={RouterLink} color="inherit" to="/">
+        Home
+      </Link>
+      <Typography color="text.primary"> Cart</Typography>
+    </Breadcrumbs>
+
+    
+ 
+    
     <Grid container spacing={2} justifyContent="center" sx={{ padding: '20px' }}>
       <Grid item xs={12} md={8}>
-        {cartItems.map((item) => (
-          <Card key={item.id} sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
+        {cart.map((item) => (
+          <Card key={item.productId} sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
             <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <CardMedia
                 component="img"
@@ -67,6 +78,7 @@ const ShoppingCartPage = () => {
         </Card>
       </Grid>
     </Grid>
+    </div>
   );
 };
 
