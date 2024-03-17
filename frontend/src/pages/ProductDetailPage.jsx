@@ -25,6 +25,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+   const { addToCart } = useStore(); 
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -41,8 +42,15 @@ const ProductDetailPage = () => {
     navigate(`/category/${product?.category}s`());
   };
 
+
+
   const increaseQuantity = () => setQuantity(qty => qty + 1);
   const decreaseQuantity = () => setQuantity(qty => Math.max(qty - 1, 1));
+  
+    const handleAddToCart = () => {
+    addToCart(product, quantity); // Call addToCart when the button is clicked
+    navigate('/cart'); //Redirect to the cart page
+  };
 
   if (!product) {
     return <Typography>Loading...</Typography>;
@@ -79,6 +87,7 @@ const ProductDetailPage = () => {
             color="primary"
             startIcon={<ShoppingCartIcon />}
             sx={{ padding: '10px 50px' }}
+            onClick={handleAddToCart} 
           >
             Add to Cart
           </Button>
