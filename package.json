@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/tajjav/SmartTech/issues"
   },
-  "homepage": "https://github.com/tajjav/SmartTech#readme",
-  "dependencies": {
-    "cors": "^2.8.5"
-  }
+  "homepage": "https://github.com/tajjav/SmartTech#readme"
 }

@@ -18,7 +18,7 @@ console.log('produces', products)
         fetchProducts(backendCategoryId); // Use context function to fetch products
     }, [categoryId, fetchProducts]);
 
-    if (loading) return <Typography>Loading...</Typography>;
+    if (loading) return <Typography>LOADING...</Typography>;
     if (error) return <Typography>Error: {error}</Typography>;
 
     return (
