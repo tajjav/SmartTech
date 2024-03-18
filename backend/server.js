@@ -7,6 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 const bcrypt = require("bcryptjs");
+const cors = require('cors');
 
 
 const PORT = process.env.PORT || 8080;
@@ -31,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 //     isSass: false, // false => scss, true => sass
 //   })
 // ); // disabled sassMiddleware as we are not rendering from backend
+app.use(cors());
 app.use(express.static('public'));
 app.use(
   cookieSession({

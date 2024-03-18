@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Grid, Typography, Button, Paper, Box, IconButton, Divider } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 const fetchProductDetails = async (productId) => {
@@ -25,7 +26,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
-   const { addToCart } = useStore(); 
+   //const { addToCart } = useStore(); 
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -53,8 +54,11 @@ const ProductDetailPage = () => {
   };
 
   if (!product) {
-    return <Typography>Loading...</Typography>;
-  }
+    return    <Box sx={{ width: '100%' }}>
+    <LinearProgress color="success" />
+</Box>
+
+  };
 
   return (
     <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px', padding: '20px' }}>
