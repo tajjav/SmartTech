@@ -8,6 +8,8 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import { useProductContext } from '../contexts/ProductContext';
 import { transformCategoryId } from '../helper/categoryHelper';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -18,7 +20,11 @@ console.log('produces', products)
         fetchProducts(backendCategoryId); // Use context function to fetch products
     }, [categoryId, fetchProducts]);
 
-    if (loading) return <Typography>LOADING...</Typography>;
+    if (loading) return (
+      <Box sx={{ width: '100%' }}>
+          <LinearProgress color="success" />
+      </Box>
+  );
     if (error) return <Typography>Error: {error}</Typography>;
 
     return (
@@ -45,7 +51,7 @@ console.log('produces', products)
                             productId={product.id} 
                             name={product.name}
                             description={product.description}
-                            price={product.price_cents}
+                            price_cents={product.price_cents}
                             image_1={product.image_1}
                         />
                     </Grid>

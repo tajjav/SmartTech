@@ -1,11 +1,11 @@
 export const transformCategoryId = (categoryId) => {
   const categoryMappings = {
     tv: 1,
-    laptop: 2,
-    smartphone: 3,
-    headphone: 4,
-    tablet: 5
+    laptops: 2,
+    tablets: 3,
+    smartphones: 4,
+    headphones: 5,
   };
 
-  return categoryMappings[categoryId] || categoryId;
+  return categoryMappings[categoryId.toLowerCase()] || null;
 };
