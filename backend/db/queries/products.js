@@ -157,5 +157,17 @@ const getProductsByBrand = (brand) => {
 
 }
 
+const getProductsByPriceRange = (minPrice, maxPrice) => {
+  const queryString = `
+      SELECT *
+      FROM products
+      WHERE price_cents >= $1 AND price_cents <= $2;
+  `;
+  const queryParams = [minPrice, maxPrice];
 
-module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand };
+  return db.query(queryString, queryParams)
+      .then((data) => data.rows);
+};
+
+
+module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand, getProductsByPriceRange  };
