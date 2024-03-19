@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
+import { useStore } from '../contexts/StoreContext';
 
 
 const categories = ['TV', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
@@ -56,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { cart, updateQuantity, removeFromCart } = useStore();
 
   const toggleDrawer = (isOpen) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -111,7 +113,7 @@ const NavBar = () => {
         </Search>
         <IconButton aria-label="show cart items" color="inherit" component={Link} to="/cart">
        
-          <ShoppingCartIcon />
+          <ShoppingCartIcon /> {cart.length> 0 && cart.length}
         </IconButton>
         
         <IconButton

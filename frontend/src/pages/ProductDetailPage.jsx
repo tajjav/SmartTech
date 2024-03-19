@@ -57,7 +57,7 @@ const ProductDetailPage = () => {
           imageUrl: product.image_1,
           quantity
         });
-        navigate('/cart');
+        
       }
     };
 

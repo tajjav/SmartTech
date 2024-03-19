@@ -21,11 +21,13 @@ function cartReducer(state, action) {
   switch (action.type) {
     case actionTypes.SET_CART:
       // Combine the cart items with product details
-      const cartWithDetails = action.payload.map(cartItem => {
+      const cartWithProductDetails = action.payload.map(cartItem => {
+        
         const productDetails = state.products.find(p => p.id === cartItem.product_id) || {};
-        return { ...cartItem, ...productDetails };
+        return { ...cartItem, product:productDetails };
       });
-      return { ...state, cart: cartWithDetails };
+      console.log("cartitem w/details",cartWithProductDetails)
+      return { ...state, cart: cartWithProductDetails };
     case actionTypes.SET_PRODUCTS:
       return { ...state, products: action.payload };
     case actionTypes.ADD_TO_CART:
