@@ -4,12 +4,13 @@ import { Grid, Typography, Button, Paper, Box, IconButton, Divider } from '@mui/
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LinearProgress from '@mui/material/LinearProgress';
+import { useStore } from '../contexts/StoreContext';
 
 
 const fetchProductDetails = async (productId) => {
   try {
     //  TODO use env for this localhost
-    const response = await fetch(`http://localhost:8080/api/products/${productId}`);
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products/${productId}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -26,7 +27,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
-   //const { addToCart } = useStore(); 
+  const { addToCart } = useStore(); 
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -39,8 +40,7 @@ const ProductDetailPage = () => {
 
   // Navigate back to the product's category list
   const handleBack = () => {
-    // Assuming the category is part of the product details for navigation
-    navigate(`/category/${product?.category}s`());
+    navigate(`/category/${product?.category?.toLowerCase()}s`);
   };
 
 
@@ -49,9 +49,17 @@ const ProductDetailPage = () => {
   const decreaseQuantity = () => setQuantity(qty => Math.max(qty - 1, 1));
   
     const handleAddToCart = () => {
-    addToCart(product, quantity); // Call addToCart when the button is clicked
-    navigate('/cart'); //Redirect to the cart page
-  };
+      if (product) {
+        addToCart({ 
+          product_Id: product.id,
+          name: product.name,
+          price: parseFloat(product.price_cents) / 100, // Convert price from cents to dollars if needed
+          imageUrl: product.image_1,
+          quantity
+        });
+        navigate('/cart');
+      }
+    };
 
   if (!product) {
     return    <Box sx={{ width: '100%' }}>

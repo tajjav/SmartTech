@@ -7,7 +7,7 @@ import CategoryPage from './pages/CategoryPage';
 //import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-
+import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { ProductProvider } from './contexts/ProductContext'; 
@@ -26,7 +26,7 @@ function App() {
           
           <Route path="/about" element={<AboutUsPage />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
-
+          <Route path="/cart" element={<ShoppingCartPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 

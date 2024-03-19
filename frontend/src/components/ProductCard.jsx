@@ -7,37 +7,31 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import { Link as RouterLink } from 'react-router-dom';
-
-
-
 import { useStore } from '../contexts/StoreContext';
 
 
 const ProductCard = ({product, productId, name, description, price_cents , image_1, stock, clearance = false, clearancePrice = '', showOnMainPage = true }) => {
+  const { addToCart } = useStore();
   // Integrate useStore to use addToCart function
 
  const apiURL = import.meta.env.VITE_API_BASE_URL 
   
   console.log('product', product)
-  const { addToCart } = useStore();
+  
 
   // Define a function that calls addToCart from context when button is clicked
-  const handleAddToCart = () => {
-    const product = {
-      productId,
-      name,
-      price_cents: clearance ? clearancePrice : price_cents,
-      image_1,
-      quantity: 1, // Default quantity is set to 1, adjust as needed
-    };
-    addToCart(product);
-
+const handleAddToCart = () => {
+  const itemToAdd = {
+    productId: product.id, // Ensure this is correct and consistent
+    name: product.name,
+    price: Number(product.price_cents) / 100, // Convert to dollars if needed and ensure it's a number
+    quantity: quantity,
+    imageUrl: product.image_1,
   };
 
-  // Render the card only if it's marked for the main products page or it's a clearance item
-  if (!showOnMainPage && !clearance) {
-    return null;
-  }
+  addToCart(itemToAdd);
+};
+
 
   return (
     <Card sx={{ width: 220, maxWidth: '150%', boxShadow: 'lg', ml: '20px' }}>
