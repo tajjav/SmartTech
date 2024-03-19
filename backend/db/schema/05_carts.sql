@@ -9,3 +9,11 @@ CREATE TABLE cart (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
+
+
+-- create trigger carts 
+-- after INSERT 
+-- on line_tiems 
+-- for each row 
+-- update carts set total = total - {product.quantity}
+-- where cart_id = {cart_id};
