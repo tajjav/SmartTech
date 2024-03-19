@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const products = await productsQueries.showAll();
-        console.log('products@@@@:', products);
         res.json(products);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -66,9 +65,26 @@ router.get('/brands/:brand', async (req, res) => {
     }
 });
 
+
+router.get('/filter-by-price', async (req, res) => {
+  console.log('filter route');
+  try {
+      const minPrice = req.query.minPrice; // Get the minimum price from query parameters
+      const maxPrice = req.query.maxPrice; // Get the maximum price from query parameters
+      console.log('minPrice: ', minPrice, 'maxPrice: ', maxPrice);
+
+      // Call a function to retrieve products based on the price range
+      const filteredProducts = await productsQueries.getProductsByPriceRange(minPrice, maxPrice);
+
+      res.json(filteredProducts);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+});
+
+
 //Get a single product by ID
 router.get('/:id', async (req, res) => {
-    console.log("Get ID route");
     try {
         const productId = req.params.id;
         const product = await productsQueries.showById(productId);
