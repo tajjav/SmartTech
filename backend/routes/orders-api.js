@@ -5,7 +5,9 @@ const ordersQueries = require('../db/queries/orders');
 // Create a new order
 router.post('/', async (req, res) => {
     try {
-        const { user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received } = req.body;
+        // stripe api call
+        // if successful
+        const { user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received, line_items } = req.body;
         const newOrder = {user_id, email, stripe_charge_id, payment_amount_cents, is_payment_received};
         const order = await ordersQueries.create(newOrder);
         res.json(order);
