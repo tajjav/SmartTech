@@ -5,11 +5,11 @@ const db = require('../connection');
 // CRUD - Create, Read, Update, Delete//
 ////////////////////////////////////////
 
-// create a line item of the cart
+// create a line item of the order
 const create = (newLineItem) => {
   const { quantity, product_id, order_id } = newLineItem;
   const queryString = `
-    INSERT INTO cart (
+    INSERT INTO line_items (
       quantity,
       product_id,
       order_id
@@ -28,10 +28,10 @@ const create = (newLineItem) => {
     .then((data) => data.rows[0]);
 };
 
-// show all line items of the cart
+// show all line items of the order
 const showAll = () => {
   const queryString = `
-    SELECT * FROM cart;
+    SELECT * FROM line_items;
   `;
 
   return db
@@ -39,10 +39,10 @@ const showAll = () => {
     .then((data) => data.rows);
 };
 
-// show a single line item or cart entry
+// show a single line item or order entry
 const showById = (id) => {
   const queryString = `
-    SELECT * FROM cart
+    SELECT * FROM line_items
     WHERE id = $1;
   `;
   const queryParams = [id];
@@ -52,10 +52,10 @@ const showById = (id) => {
     .then((data) => data.rows[0]);
 };
 
-// show a single line item or cart entry by order_id
+// show a single line item or order entry by order_id
 const showByOrderId = (order_id) => {
   const queryString = `
-    SELECT * FROM cart
+    SELECT * FROM line_items
     WHERE order_id = $1;
   `;
   const queryParams = [order_id];
@@ -65,10 +65,10 @@ const showByOrderId = (order_id) => {
     .then((data) => data.rows);
 };
 
-// show a single line item or cart entry by product_id
+// show a single line item or order entry by product_id
 const showByProductId = (product_id) => {
   const queryString = `
-    SELECT * FROM cart
+    SELECT * FROM line_items
     WHERE product_id = $1;
   `;
   const queryParams = [product_id];
@@ -78,11 +78,11 @@ const showByProductId = (product_id) => {
     .then((data) => data.rows);
 };
 
-// update a line item or cart entry
+// update a line item or order entry
 const update = (updatedLineItem) => {
   const { id, quantity, product_id, order_id } = updatedLineItem;
   const queryString = `
-    UPDATE cart
+    UPDATE line_items
     SET
       quantity = $1,
       product_id = $2,
@@ -102,10 +102,10 @@ const update = (updatedLineItem) => {
     .then((data) => data.rows[0]);
 };
 
-// delete a line item or cart entry
+// delete a line item or order entry
 const remove = (id) => {
   const queryString = `
-    DELETE FROM cart
+    DELETE FROM line_items
     WHERE id = $1;
   `;
   const queryParams = [id];

@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS cart CASCADE;
-CREATE TABLE cart (
+CREATE TABLE line_items (
     id SERIAL PRIMARY KEY,
     quantity INT NOT NULL,
     product_id INT NOT NULL,
