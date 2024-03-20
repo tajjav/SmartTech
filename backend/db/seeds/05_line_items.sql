@@ -1,4 +1,4 @@
-INSERT INTO cart (quantity, product_id, order_id) VALUES
+INSERT INTO line_items (quantity, product_id, order_id) VALUES
 (2, 1, 1),
 (1, 7, 2),
 (3, 3, 1),

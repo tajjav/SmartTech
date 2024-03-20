@@ -29,8 +29,20 @@ const create = (newOrder) => {
 
   return db
     .query(queryString,queryParams)
-    .then((data) => data.rows[0]);
+    .then((data) => {
+      const order = data.rows[0];
+      line_items(order.id, line_items );
+      
+    });
 };
+
+const createLineItems = (orderId, line_items) => {
+  // iterate over each line item
+  // insert into the table line_item using create line-item querry ,
+  // any change in orderId and line_items, this function should run. 
+
+  
+}
 
 // show all orders
 const showAll = () => {

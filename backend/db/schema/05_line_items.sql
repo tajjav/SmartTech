@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS cart CASCADE;
-CREATE TABLE cart (
+DROP TABLE IF EXISTS line_items CASCADE;
+CREATE TABLE line_items (
     id SERIAL PRIMARY KEY,
     quantity INT NOT NULL,
     product_id INT NOT NULL,
@@ -9,11 +9,3 @@ CREATE TABLE cart (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
-
-
--- create trigger carts 
--- after INSERT 
--- on line_tiems 
--- for each row 
--- update carts set total = total - {product.quantity}
--- where cart_id = {cart_id};

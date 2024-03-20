@@ -49,10 +49,9 @@ app.use(
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersApiRoutes = require('./routes/users-api');
-const notesApiRoutes = require('./routes/notes-api');
 const categoriesApiRoutes = require('./routes/categories-api');
 const productsApiRoutes = require('./routes/products-api');
-const cartApiRoutes = require('./routes/cart-api');
+const lineItemsApiRoutes = require('./routes/line_items-api');
 const ordersApiRoutes = require('./routes/orders-api');
 
 
@@ -60,10 +59,9 @@ const ordersApiRoutes = require('./routes/orders-api');
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', usersApiRoutes);
-app.use('/api/notes', notesApiRoutes);
 app.use('/api/categories', categoriesApiRoutes);
 app.use('/api/products', productsApiRoutes);
-app.use('/api/cart', cartApiRoutes);
+app.use('/api/line_items', lineItemsApiRoutes); // cart should not be present in the backend at all. It is the line_item. Routes for line_items are not required.
 app.use('/api/orders', ordersApiRoutes);
 
 // Note: mount other resources here, using the same pattern above

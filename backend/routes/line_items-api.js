@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const cartQueries = require('../db/queries/cart');
+const cartQueries = require('../db/queries/line_items');
 
-// Create a line item in the cart
+// Create a line item of the order
 router.post('/', async (req, res) => {
     try {
         const newLineItem = req.body;
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get all line items in the cart
+// Get all line items in the order
 router.get('/', async (req, res) => {
     try {
         const lineItems = await cartQueries.showAll();
@@ -56,7 +56,7 @@ router.get('/products/:productId', async (req, res) => {
     }
 });
 
-// Update a line item in the cart
+// Update a line item in the order
 router.put('/:id', async (req, res) => {
     try {
         const lineItemId = req.params.id;
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a line item from the cart
+// Delete a line item from the order
 router.delete('/:id', async (req, res) => {
     try {
         const lineItemId = req.params.id;
