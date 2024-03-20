@@ -169,5 +169,18 @@ const getProductsByPriceRange = (minPrice, maxPrice) => {
       .then((data) => data.rows);
 };
 
+const searchProductsByName = (query) => {
+  const queryString = `
+    SELECT * FROM products
+    WHERE name ILIKE $1;
+  `;
+  const queryParams = [`%${query}%`];
 
-module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand, getProductsByPriceRange  };
+  return db
+    .query(queryString, queryParams)
+    .then((data) => data.rows);
+};
+
+
+
+module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand, getProductsByPriceRange, searchProductsByName  };

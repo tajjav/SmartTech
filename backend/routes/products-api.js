@@ -82,6 +82,16 @@ router.get('/filter-by-price', async (req, res) => {
   }
 });
 
+// Route for searching products by name
+router.get('/search', async (req, res) => {
+  try {
+      const { query } = req.query;
+      const products = await productsQueries.searchProductsByName(query);
+      res.json(products);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+});
 
 //Get a single product by ID
 router.get('/:id', async (req, res) => {
