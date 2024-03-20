@@ -169,16 +169,16 @@ const getProductsByPriceRange = (minPrice, maxPrice) => {
       .then((data) => data.rows);
 };
 
-// Updated function to search products by name
-const searchProductsByName = (productName) => {
+const searchProductsByName = (query) => {
   const queryString = `
-      SELECT * FROM products
-      WHERE name ILIKE $1;
+    SELECT * FROM products
+    WHERE name ILIKE $1;
   `;
-  const queryParams = [`%${productName}%`];
+  const queryParams = [`%${query}%`];
 
-  return db.query(queryString, queryParams)
-      .then((data) => data.rows);
+  return db
+    .query(queryString, queryParams)
+    .then((data) => data.rows);
 };
 
 
