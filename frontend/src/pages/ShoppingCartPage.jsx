@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Grid, Typography, Button, Card, CardContent, IconButton, Breadcrumbs, Link as MuiLink, CardMedia } from '@mui/material';
+import { Grid, Typography, Button, Card, CardContent,IconButton, Breadcrumbs, Link as MuiLink, CardMedia } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -40,7 +40,7 @@ const ShoppingCartPage = () => {
     }, 0).toFixed(2);
   };
   
-  useEffect(()=>{
+  useEffect(()=>{ 
     console.log("cart updated on frontend")  
   },[])
   return (

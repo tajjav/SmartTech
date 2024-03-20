@@ -40,7 +40,7 @@ const ProductDetailPage = () => {
 
   // Navigate back to the product's category list
   const handleBack = () => {
-    navigate(`/category/${product?.category?.toLowerCase()}s`);
+    navigate(-1); // Goes back one step in the browser's history
   };
 
 

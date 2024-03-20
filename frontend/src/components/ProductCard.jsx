@@ -5,89 +5,78 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Chip from '@mui/joy/Chip';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/joy/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import { useStore } from '../contexts/StoreContext';
 
-
-const ProductCard = ({product, productId, name, description, price_cents , image_1, stock, clearance = false, clearancePrice = '', showOnMainPage = true }) => {
+const ProductCard = ({product, productId, name, description, price_cents, image_1, stock, clearance = false, clearancePrice = '' }) => {
   const { addToCart } = useStore();
-  // Integrate useStore to use addToCart function
-
- const apiURL = import.meta.env.VITE_API_BASE_URL 
   
-  console.log('product', product)
-  
-
-  // Define a function that calls addToCart from context when button is clicked
-const handleAddToCart = () => {
-  const itemToAdd = {
-    productId: product.id, // Ensure this is correct and consistent
-    name: product.name,
-    price: Number(product.price_cents) / 100, // Convert to dollars if needed and ensure it's a number
-    quantity: quantity,
-    imageUrl: product.image_1,
+  // Handle add to cart function
+  const handleAddToCart = (event) => {
+    event.preventDefault(); // Prevent the link from navigating
+    if (product) {
+      addToCart({ 
+        product_Id: product.id,
+        name: product.name,
+        price: parseFloat(product.price_cents) / 100,
+        imageUrl: product.image_1,
+        quantity:1
+      });
+    }
   };
 
-  addToCart(itemToAdd);
-};
+  if (!product) {
+    return <Box sx={{ width: '100%' }}><LinearProgress color="success" /></Box>;
+  };
 
 
+  const cardHoverStyle = {
+    transition: 'transform 0.3s ease-in-out',
+    ':hover': {
+      transform: 'scale(1.03)', // Slightly enlarge the card on hover
+    },
+    ':hover .addToCartButton': {
+      // This will target a child button with the 'addToCartButton' class
+      transform: 'translateY(-5px)', // Optional: make the add to cart button pop a little
+    }
+  };
   return (
-    <Card sx={{ width: 220, maxWidth: '150%', boxShadow: 'lg', ml: '20px' }}>
-      <CardOverflow>
-        <AspectRatio sx={{ minWidth: 200 }}>
-          <img src={import.meta.env.VITE_API_BASE_URL + image_1} loading="lazy" alt={name} />
-        </AspectRatio>
-      </CardOverflow>
-      <CardContent>
-        <Typography level="body-xs">{description}</Typography>
-        <RouterLink to={`/product/${productId}`} style={{ textDecoration: 'none' }}>
+    <RouterLink to={`/product/${productId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Card sx={{ ...cardHoverStyle, width: 220, maxWidth: '150%', boxShadow: 'lg', ml: '20px', cursor: 'pointer' }}>
+        <CardOverflow>
+          <AspectRatio sx={{ minWidth: 200 }}>
+            <img src={import.meta.env.VITE_API_BASE_URL + image_1} loading="lazy" alt={name} />
+          </AspectRatio>
+        </CardOverflow>
+        <CardContent>
+          <Typography level="body-xs">{description}</Typography>
           <Typography level="h6" component="div" fontWeight="md" color="neutral" textColor="text.primary">
             {name}
           </Typography>
-        </RouterLink>
-        {clearance ? (
-          <>
-            <Typography level="body-sm" sx={{ textDecoration: 'line-through', display: 'block' }}>
-              {price_cents }
-            </Typography>
-            <Typography level="title-lg" sx={{ mt: 1, fontWeight: 'xl', color: 'danger.main' }}>
-              {clearancePrice} <Chip component="span" size="sm" variant="soft" color="danger">Clearance</Chip>
-            </Typography>
-          </>
-        ) : (
-          <Typography
-            level="title-lg"
-            sx={{ mt: 1, fontWeight: 'xl' }}
-            endDecorator={
-              stock < 10 ? (
-                <Chip component="span" size="sm" variant="soft" color="danger">
-                  Only {stock} left!
-                </Chip>
-              ) : (
-                <Chip component="span" size="sm" variant="soft" color="success">
-                  In stock
-                </Chip>
-              )
-            }
-          >
-            {price_cents}
-          </Typography>
-        )}
-        {!clearance && stock < 10 && (
-          <Typography level="body-sm">
-            Only {stock} left in stock!
-          </Typography>
-        )}
-      </CardContent>
-      <CardOverflow>
-        {/* Update button onClick event to handleAddToCart */}
-        <Button variant="solid" color="primary" size="lg" onClick={handleAddToCart}>
+          {/* Price and stock information */}
+        </CardContent>
+        <CardOverflow>
+          <Box sx={{ mt: 4, textAlign: 'center' }}>
+          <Button 
+          variant="solid" 
+          color="primary" 
+          size="lg" 
+          className="addToCartButton" // Add this class to target the button for hover effect
+          onClick={handleAddToCart}
+          sx={{
+            transition: 'transform 0.3s ease-in-out', // Add transition effect to the button
+          }}
+        >
           Add to cart
         </Button>
-      </CardOverflow>
-    </Card>
+          </Box>
+        </CardOverflow>
+      </Card>
+    </RouterLink>
   );
 };
 
