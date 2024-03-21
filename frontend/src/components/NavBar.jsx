@@ -99,6 +99,7 @@ const NavBar = () => {
 
         <Button color="inherit" component={Link} to="/clearance">Clearance</Button>
         <Button color="inherit" component={Link} to="/about">About Us</Button>
+        
    {/* Search component inserted here */}
    <Search>
           <SearchIconWrapper>

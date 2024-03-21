@@ -8,10 +8,13 @@ import CategoryPage from './pages/CategoryPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 
+import GuestPage from './pages/GuestPage';
+
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { ProductProvider } from './contexts/ProductContext'; 
 import { StoreProvider } from './contexts/StoreContext'; 
+
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/guestpage"  element={<GuestPage />} />
+
+
 
         </Routes>
         <Footer />
