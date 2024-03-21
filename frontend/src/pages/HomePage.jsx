@@ -57,72 +57,40 @@ function CarouselItem(props) {
 const FeaturedDealsBanner = () => {
   return (
     <Paper
-      elevation={0}
-      sx={{
-        height: 'auto', // Adjust height automatically based on content
-        paddingY: 3, // Use padding on the y-axis for spacing
-        display: 'flex',
-        flexDirection: 'column', // Stack children vertically
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginY: 2, // Adjust vertical margins to control spacing from elements above and below
-        backgroundImage: 'url(/path-to-your-banner-image.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        maxWidth: '80%', // Make banner less wide, adjust as needed
-        marginLeft: 'auto', // Center the banner horizontally
-        marginRight: 'auto',
-        position: 'relative',
-        transition: 'transform 0.3s ease', // Smooth transition for hover effect
-        '&:hover': {
-          transform: 'scale(1.05)', // Slightly enlarge the banner on hover
-        },
-      }}
-    >
-      <div style={{
-        textAlign: 'center',
-        color: 'white',
-        zIndex: 2,
-        transition: 'transform 0.3s ease', // Smooth transition for hover effect
-      }}>
-        <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', fontSize: '2rem', transition: 'color 0.3s ease' }}>
-          Shop Featured Deals
-        </Typography>
-        <Button 
-          variant="contained" 
-          color="primary" 
-          href="link-for-featured-deals"
-          sx={{
-            marginTop: 2,
-            paddingX: 4, // Increase horizontal padding for a wider button
-            paddingY: 1, // Adjust vertical padding if needed
-            fontSize: '1rem', // Button font size
-            transition: 'background-color 0.3s ease', // Smooth background color transition
-            ':hover': {
-              backgroundColor: 'secondary.main', // Change button color on hover
-              opacity: 0.9,
-            }
-          }}
-        >
-          Explore Now
-        </Button>
-      </div>
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-          zIndex: 1,
-          transition: 'background-color 0.3s ease', // Smooth background color transition
-          '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)', // Darken overlay on hover
-          },
-        }}
-      />
-    </Paper>
+  sx={{
+    height: '130px',
+    width: '100%',
+    backgroundImage: 'url(path-to-your-banner-image.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    margin: '20px',
+    backgroundColor: '#D3D3D3', 
+    position: 'relative', 
+  }}
+>
+  
+  <Typography
+    variant="h4"
+    component="h2"
+    sx={{
+      fontWeight: 'bold',
+      fontSize: '30px', 
+      color: '#5e17eb', 
+      fontFamily: 'Helvetica', 
+      textAlign: 'center', 
+      lineHeight: '150px', 
+      textDecoration: 'none', 
+      transition: 'color 0.3s ease', 
+    }}
+  >
+    Shop Featured Deals
+  </Typography>
+
+
+ 
+
+
+</Paper>
   );
 };
 
@@ -152,12 +120,12 @@ const HomePage = () => {
     };
 
     fetchProducts();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []); 
 
   const selectRandomProducts = (products, count) => {
-    // Shuffle array using the Fisher-Yates shuffle algorithm
+   
     const shuffled = products.sort(() => 0.5 - Math.random());
-    // Get sub-array of first n elements after shuffled
+    
     return shuffled.slice(0, count);
   };
 
