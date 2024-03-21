@@ -27,6 +27,9 @@ console.log('produces', products)
   );
     if (error) return <Typography>Error: {error}</Typography>;
 
+
+    
+
     return (
       <div>
         <Breadcrumbs aria-label="breadcrumb">
