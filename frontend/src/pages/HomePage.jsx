@@ -155,7 +155,7 @@ const HomePage = () => {
               name={product.name}
               //description={product.description}
               price_cents={product.price_cents}
-              image_1={product.image_1} // Adjust according to how your backend sends image URLs
+              image_1={product.image_1} 
             />
           </Grid>
         ))}

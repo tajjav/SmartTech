@@ -15,8 +15,7 @@ const CheckoutForm = () => {
       return;
     }
 
-    // Here, you would typically trigger payment or create a payment intent.
-    // const result = await stripe.confirmPayment({ ... });
+   
   };
 
   return (

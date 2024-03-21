@@ -31,22 +31,22 @@ function cartReducer(state, action) {
     case actionTypes.SET_PRODUCTS:
       return { ...state, products: action.payload };
     case actionTypes.ADD_TO_CART:
-      // Logic for adding to cart (may also need to combine with product details)
+      
       return { ...state, cart: [...state.cart, action.payload] };
     case actionTypes.UPDATE_QUANTITY:
-      // Logic for updating quantity
+     
       return {
         ...state,
         cart: state.cart.map(item => item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item)
       };
     case actionTypes.REMOVE_FROM_CART:
-      // Logic for removing from cart
+  
       return {
         ...state,
         cart: state.cart.filter(item => item.id !== action.payload.id)
       };
     case actionTypes.CLEAR_CART:
-      // Logic for clearing cart
+      
       return { ...state, cart: [] };
     default:
       return state;
@@ -93,9 +93,9 @@ export const StoreProvider = ({ children }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          product_id: item.product_Id, // Assuming backend expects 'product_id'
+          product_id: item.product_Id, 
           quantity: item.quantity,
-          // ... add other fields as required by your backend
+         
         })
       });
       if (!response.ok) throw new Error('Failed to add item to cart');
@@ -126,7 +126,7 @@ export const StoreProvider = ({ children }) => {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to remove item from cart');
-      fetchCartData(); // Can Refresh cart data to show the removal
+      fetchCartData(); 
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }

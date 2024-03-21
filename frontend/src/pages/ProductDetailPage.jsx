@@ -38,9 +38,9 @@ const ProductDetailPage = () => {
     getProductDetails();
   }, [productId]);
 
-  // Navigate back to the product's category list
+
   const handleBack = () => {
-    navigate(-1); // Goes back one step in the browser's history
+    navigate(-1); 
   };
 
 
@@ -72,22 +72,22 @@ const ProductDetailPage = () => {
     <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px', padding: '20px' }}>
       <Grid item xs={12}>
         <Button startIcon={<ArrowBackIcon />} onClick={handleBack}>
-          Back to Products
+          Back 
         </Button>
       </Grid>
       <Grid item md={6} sm={12}>
-        {/* Product image and additional images */}
+       
         <img src={import.meta.env.VITE_API_BASE_URL + product.image_1} alt={product.name} style={{ width: '100%' }} />
-        {/* Rest of your product detail UI */}
+      
         <img src={import.meta.env.VITE_API_BASE_URL + product.image_2} alt={product.name} style={{ width: '100%' }} />
         <img src={import.meta.env.VITE_API_BASE_URL + product.image_3} alt={product.name} style={{ width: '100%' }} />
       </Grid>
       <Grid item md={6} sm={12}>
         <Typography variant="h4">{product.name}</Typography>
         <Divider sx={{ my: 2 }} />
-        <Typography variant="h5">Price: ${product.price_cents / 100}</Typography> {/* price is in cents */}
+        <Typography variant="h5">Price: ${product.price_cents / 100}</Typography> 
         <Typography sx={{ mt: 2 }}>{product.description}</Typography>
-        {/* Quantity and add to cart button */}
+        
         <div>
           <Button onClick={decreaseQuantity}>-</Button>
           <Typography component="span" sx={{ margin: '0 20px' }}>{quantity}</Typography>
