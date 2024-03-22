@@ -71,7 +71,7 @@ export const StoreProvider = ({ children }) => {
 
   const fetchCartData = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/cart`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/line_items`);
       if (!response.ok) throw new Error('Failed to fetch cart data');
       const cartData = await response.json();
       dispatch({ type: actionTypes.SET_CART, payload: cartData });
@@ -89,7 +89,7 @@ export const StoreProvider = ({ children }) => {
 
   async function addToCart(item) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/cart`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/line_items`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -108,7 +108,7 @@ export const StoreProvider = ({ children }) => {
 
   async function updateQuantity(productId, quantity) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/cart/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/line_items/${productId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quantity })
@@ -122,7 +122,7 @@ export const StoreProvider = ({ children }) => {
 
   async function removeFromCart(productId) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/cart/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/line_items/${productId}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to remove item from cart');

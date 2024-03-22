@@ -105,7 +105,12 @@ const HomePage = () => {
       setLoading(true);
       try {
         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`);
-        if (!response.ok) throw new Error('Network response was not ok');
+        console.log(`Response status: ${response.status}`); // Log the response status
+        if (!response.ok) {
+          const responseBody = await response.text(); // Attempt to read response body
+          console.log(`Response body: ${responseBody}`); // Log the response body
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
 
         // Select 8 random products if the data length is more than 8
