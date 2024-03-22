@@ -8,18 +8,21 @@ import CheckoutPage from './pages/CheckoutPage';
 //import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+
+import GuestPage from './pages/GuestPage';
+
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-
-import GuestPage from './pages/GuestPage';
-import OrderPage from './pages/OrderPage';
-
 import { ProductProvider } from './contexts/ProductContext'; 
 import { StoreProvider } from './contexts/StoreContext'; 
 import { AuthProvider } from './contexts/AuthorizationContext';
+import OrderPage from './pages/OrderPage';
 //import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+//import { Elements } from '@stripe/react-stripe-js';
+
+
+
 
 function App() {
   return (
@@ -39,6 +42,10 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/guestpage" element={<GuestPage />} />
+          <Route path="/orderpage"  element={<OrderPage />} />
+
+
 
 
         </Routes>
