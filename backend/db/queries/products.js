@@ -49,7 +49,7 @@ const create = (newProduct) => {
 // show all products
 const showAll = () => {
   const queryString = `
-    SELECT * FROM products LIMIT = 9;
+    SELECT * FROM products LIMIT  9;
   `;
 
   return db
@@ -145,7 +145,7 @@ const remove = (id) => {
 const getProductsByBrand = (brand) => {
   const queryString = `
     SELECT * FROM products
-    WHERE brand = $1 LIMIT = 9;
+    WHERE brand = $1 LIMIT  9;
   `;
   const queryParams = [brand];
 
@@ -169,5 +169,18 @@ const getProductsByPriceRange = (minPrice, maxPrice) => {
       .then((data) => data.rows);
 };
 
+const searchProductsByName = (query) => {
+  const queryString = `
+    SELECT * FROM products
+    WHERE name ILIKE $1;
+  `;
+  const queryParams = [`%${query}%`];
 
-module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand, getProductsByPriceRange  };
+  return db
+    .query(queryString, queryParams)
+    .then((data) => data.rows);
+};
+
+
+
+module.exports = { create, showAll, showById, showByCategoryId, update, remove, getProductsByBrand, getProductsByPriceRange, searchProductsByName  };

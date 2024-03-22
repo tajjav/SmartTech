@@ -1,14 +1,28 @@
-// LoginPage.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Button, TextField, FormControlLabel, Checkbox, Typography, Container } from '@mui/material';
-
+import { useAuth } from '../contexts/AuthorizationContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  
-  const handleLogin = (event) => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
+
+  const handleLogin = async (event) => {
     event.preventDefault();
-    
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    setError(''); 
+
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (error) {
+     
+      console.error(error);
+      setError('Login failed. Please check your credentials.'); 
+    }
   };
 
   return (
@@ -24,6 +38,7 @@ const LoginPage = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
+        {error && <Typography color="error">{error}</Typography>} 
         <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
