@@ -72,7 +72,7 @@ const ProductDetailPage = () => {
     <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px', padding: '20px' }}>
       <Grid item xs={12}>
         <Button startIcon={<ArrowBackIcon />} onClick={handleBack}>
-          Back 
+          Back to Products
         </Button>
       </Grid>
       <Grid item md={6} sm={12}>
