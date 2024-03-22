@@ -8,12 +8,16 @@ import CheckoutPage from './pages/CheckoutPage';
 //import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+
+import GuestPage from './pages/GuestPage';
+
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { ProductProvider } from './contexts/ProductContext'; 
 import { StoreProvider } from './contexts/StoreContext'; 
 import { AuthProvider } from './contexts/AuthorizationContext';
+
 import FloatingChatButton from './components/FloatingChatButton';
 import Chat from './components/Chat';
 import { Container } from '@mui/material';
@@ -21,7 +25,13 @@ import { Container } from '@mui/material';
 import { Elements } from '@stripe/react-stripe-js';
 import { ThemeProvider } from './contexts/ThemeContext';
 
-//const stripePromise = loadStripe('pk_test_51OpjpmLp1E6HVi02o9gLgLuH5pbmWYfD2jBLcwwiXClGVgzTgNV67u0tEXBNsJE0UuUFIYbUPThZvjmQvfmZTY6g000AXlsPJ3');
+import OrderPage from './pages/OrderPage';
+//import { loadStripe } from '@stripe/stripe-js';
+//import { Elements } from '@stripe/react-stripe-js';
+
+
+
+
 function App() {
   return (
     <ThemeProvider> 
@@ -41,7 +51,11 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          
+          <Route path="/guestpage" element={<GuestPage />} />
+          <Route path="/orderpage"  element={<OrderPage />} />
+
+
+
 
         </Routes>
         <FloatingChatButton /> 
