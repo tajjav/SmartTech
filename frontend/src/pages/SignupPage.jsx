@@ -1,13 +1,29 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Button, TextField, FormControlLabel, Checkbox, Typography, Container } from '@mui/material';
+import { useAuth } from '../contexts/AuthorizationContext';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, TextField, Typography, Container } from '@mui/material';
 
 const SignupPage = () => {
+  const { signup } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSignup = (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
- 
+    const name = event.target.name.value; 
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+  
+    try {
+      await signup(name, email, password); 
+      navigate('/'); 
+    } catch (error) {
+     
+      console.error(error);
+    }
   };
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -23,6 +39,16 @@ const SignupPage = () => {
           Sign Up
         </Typography>
         <Box component="form" onSubmit={handleSignup} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+          />
+
           <TextField
             margin="normal"
             required
@@ -43,7 +69,7 @@ const SignupPage = () => {
             id="password"
             autoComplete="current-password"
           />
-          
+
           <Button
             type="submit"
             fullWidth
@@ -52,7 +78,7 @@ const SignupPage = () => {
           >
             Sign Up
           </Button>
-          {/* Link to login page if the user already has an account */}
+          
         </Box>
       </Box>
     </Container>

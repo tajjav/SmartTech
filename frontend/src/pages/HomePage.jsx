@@ -1,9 +1,12 @@
-import React, { useEffect, useContext }  from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Grid } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
-
+import { Paper } from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/joy/Typography';
+import Button from '@mui/joy/Button';
+import Box from '@mui/joy/Box';
 
 
 
@@ -54,51 +57,92 @@ function CarouselItem(props) {
 const FeaturedDealsBanner = () => {
   return (
     <Paper
-      style={{
-        
-        height: '130px', 
-        width: '100%',
-        backgroundImage: 'url(path-to-your-banner-image.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        margin: '20px ',
-        backgroundColor: '#38b6ff' 
-      }}
-    
-    >
-      
-      <a href="link-for-featured-deals" style={{ 
-        
-        display: 'block',
-        height: '100%',
-        width: '100%',
-        textAlign: 'center',
-        lineHeight: '150px', 
-        color: '#5e17eb', 
-        fontWeight: 'bold',
-        fontSize: '30px',
-        fontFamily:'Helvetica',
-        textDecoration: 'none',
+  sx={{
+    height: '130px',
+    width: '100%',
+    backgroundImage: 'url(path-to-your-banner-image.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    margin: '20px',
+    backgroundColor: '#D3D3D3', 
+    position: 'relative', 
+  }}
+>
+  
+  <Typography
+    variant="h4"
+    component="h2"
+    sx={{
+      fontWeight: 'bold',
+      fontSize: '30px', 
+      color: '#5e17eb', 
+      fontFamily: 'Helvetica', 
+      textAlign: 'center', 
+      lineHeight: '150px', 
+      textDecoration: 'none', 
+      transition: 'color 0.3s ease', 
+    }}
+  >
+    Shop Featured Deals
+  </Typography>
 
-      }}>
-        Shop Featured Deals
-      </a>
-    </Paper>
+
+ 
+
+
+</Paper>
   );
 };
 
-const mockProducts = [
-  { id: 1, name: 'Smart TV', description: 'A high-quality smart TV', price: '$999', imageUrl: '/images/TV/TV.png' },
-  { id: 2, name: 'Laptop', description: 'A powerful laptop for professionals', price: '$1499', imageUrl: '/images/Laptop/Laptop.jpg' },
-  { id: 3, name: 'Headphones', description: 'Noise-cancelling headphones', price: '$299', imageUrl: '/images/Headphones/Headphones.png' },
-  { id: 4, name: 'SmartPhones', description: 'Experience next-gen photography with our best smartphone camera.', price: '$199', imageUrl: '/images/Smartphones/Smartphone1.jpg' },
-  { id: 5, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
-  { id: 6, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' }, 
-  { id: 7, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
-  { id: 8, name: 'Tablets', description: 'A powerful tablet with a stunning display', price: '$299', imageUrl: '/images/Tablet/Tablet1.png' },
-];
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`);
+        console.log(`Response status: ${response.status}`); // Log the response status
+        if (!response.ok) {
+          const responseBody = await response.text(); // Attempt to read response body
+          console.log(`Response body: ${responseBody}`); // Log the response body
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+
+        // Select 8 random products if the data length is more than 8
+        const randomProducts = data.length > 8 ? selectRandomProducts(data, 8) : data;
+        setProducts(randomProducts);
+      } catch (error) {
+        setError(error.message);
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); 
+
+  const selectRandomProducts = (products, count) => {
+   
+    const shuffled = products.sort(() => 0.5 - Math.random());
+    
+    return shuffled.slice(0, count);
+  };
+
+  if (loading) return <LinearProgress color="secondary" />;
+  if (error) return <div>Error: {error}</div>;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   return (
     <div className="home-page">
       <Carousel>
@@ -107,14 +151,16 @@ const HomePage = () => {
         ))}
       </Carousel>
       <FeaturedDealsBanner />
-      <Grid container spacing={2}>
-        {mockProducts.map(product => (
+      <Grid container spacing={2} justifyContent="center">
+        {products.map(product => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
             <ProductCard
+              product={product}
+              productId={product.id}
               name={product.name}
-              description={product.description}
-              price={product.price}
-              imageUrl={product.imageUrl}
+              //description={product.description}
+              price_cents={product.price_cents}
+              image_1={product.image_1} 
             />
           </Grid>
         ))}
@@ -122,5 +168,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;
