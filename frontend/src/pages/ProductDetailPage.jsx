@@ -28,15 +28,21 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
   const { addToCart } = useStore(); 
+  const [selectedImage, setSelectedImage] = useState('');
 
   useEffect(() => {
     const getProductDetails = async () => {
       const productDetails = await fetchProductDetails(productId);
       setProduct(productDetails);
     };
-
     getProductDetails();
   }, [productId]);
+
+  useEffect(() => {
+    if (product) {
+      setSelectedImage(product.image_1); // This should be in a separate useEffect that depends on `product`
+    }
+  }, [product]);
 
 
   const handleBack = () => {
@@ -60,6 +66,9 @@ const ProductDetailPage = () => {
         
       }
     };
+    const handleThumbnailClick = (image) => {
+      setSelectedImage(image);
+    };
 
   if (!product) {
     return    <Box sx={{ width: '100%' }}>
@@ -67,6 +76,8 @@ const ProductDetailPage = () => {
 </Box>
 
   };
+
+
 
   return (
     <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px', padding: '20px' }}>
@@ -77,16 +88,25 @@ const ProductDetailPage = () => {
       </Grid>
       <Grid item md={6} sm={12}>
        
-        <img src={import.meta.env.VITE_API_BASE_URL + product.image_1} alt={product.name} style={{ width: '100%' }} />
+      <img src={import.meta.env.VITE_API_BASE_URL + selectedImage} alt={product.name} style={{ width: '100%' }} />
       
-        <img src={import.meta.env.VITE_API_BASE_URL + product.image_2} alt={product.name} style={{ width: '100%' }} />
-        <img src={import.meta.env.VITE_API_BASE_URL + product.image_3} alt={product.name} style={{ width: '100%' }} />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+    {[product.image_1, product.image_2, product.image_3].map((image, index) => (
+      <img
+        key={index}
+        src={import.meta.env.VITE_API_BASE_URL + image}
+        alt={`${product.name} ${index + 1}`}
+        style={{ width: '24%', margin: '1%', cursor: 'pointer' }}
+        onClick={() => handleThumbnailClick(image)}
+      />
+    ))}
+  </div>
       </Grid>
       <Grid item md={6} sm={12}>
         <Typography variant="h4">{product.name}</Typography>
         <Divider sx={{ my: 2 }} />
         <Typography variant="h5">Price: ${product.price_cents / 100}</Typography> 
-        <Typography sx={{ mt: 2 }}>{product.description}</Typography>
+        <Typography sx={{ mt: 2 }} >Product Hightlights: <Divider sx={{ my: 0 }} /> {product.description}</Typography>
         
         <div>
           <Button onClick={decreaseQuantity}>-</Button>
