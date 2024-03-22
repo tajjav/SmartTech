@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Card, CardContent, CardMedia, Typography, Grid, Container } from '@mui/material';
 
 const OrderPage = () => {
-  // Mock data for cart items
+  
   const cartItems = [
     {
       id: 1,
@@ -12,19 +12,19 @@ const OrderPage = () => {
       imageUrl: 'https://via.placeholder.com/150',
       quantity: 1
     },
-    // ... Add more items as needed
+   
   ];
 
-  // Theme colors for styling
+  
   const theme = {
     colors: {
-      background: '#f5f5f5', // White-greyish for page background
-      card: '#ffffff', // White for cards
-      primary: '#5e35b1', // Deep shade of purple
-      secondary: '#f06292', // Soft pink
-      text: '#37474f', // Dark grey for text
-      // Button color removed since buttons are not used anymore
-      confirm: 'linear-gradient(to right, #536dfe, #7c4dff)', // Gradient for the confirmation message
+      background: '#f5f5f5', 
+      card: '#ffffff', 
+      primary: '#5e35b1', 
+      secondary: '#f06292', 
+      text: '#37474f', 
+      
+      confirm: 'linear-gradient(to right, #536dfe, #7c4dff)', 
     }
   };
 
@@ -34,7 +34,7 @@ const OrderPage = () => {
         <Typography
           variant="h5"
           gutterBottom
-          align="center" // 'side' is not a valid value for align, changed to 'center'
+          align="center" 
           sx={{
             backgroundImage: theme.colors.confirm,
             WebkitBackgroundClip: 'text',
@@ -69,7 +69,7 @@ const OrderPage = () => {
                     <Typography variant="subtitle1" color={theme.colors.secondary} component="div">
                       Price: ${item.price.toFixed(2)}
                     </Typography>
-                    {/* Quantity display without buttons */}
+                    
                     <Typography component="div" sx={{ margin: '0 20px', color: theme.colors.text }}>
                       Quantity: {item.quantity}
                     </Typography>
