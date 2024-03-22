@@ -11,13 +11,16 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+
+import GuestPage from './pages/GuestPage';
+import OrderPage from './pages/OrderPage';
+
 import { ProductProvider } from './contexts/ProductContext'; 
 import { StoreProvider } from './contexts/StoreContext'; 
 import { AuthProvider } from './contexts/AuthorizationContext';
 //import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
-//const stripePromise = loadStripe('pk_test_51OpjpmLp1E6HVi02o9gLgLuH5pbmWYfD2jBLcwwiXClGVgzTgNV67u0tEXBNsJE0UuUFIYbUPThZvjmQvfmZTY6g000AXlsPJ3');
 function App() {
   return (
     <AuthProvider> 
@@ -36,7 +39,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          
+
 
         </Routes>
         
