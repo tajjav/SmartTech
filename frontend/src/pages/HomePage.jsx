@@ -105,10 +105,10 @@ const HomePage = () => {
       setLoading(true);
       try {
         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`);
-        console.log(`Response status: ${response.status}`); // Log the response status
+        console.log(`Response status: ${response.status}`); 
         if (!response.ok) {
-          const responseBody = await response.text(); // Attempt to read response body
-          console.log(`Response body: ${responseBody}`); // Log the response body
+          const responseBody = await response.text(); 
+          console.log(`Response body: ${responseBody}`); 
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
