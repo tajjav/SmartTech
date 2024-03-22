@@ -81,13 +81,24 @@ const NavBar = () => {
     </div>
   );
 
+
   return (
-    <AppBar position="static">
+<AppBar position="static" style={{ background: 'white', color: '#6441a5', boxShadow: 'none' }}>
       <Toolbar>
         
-        <Typography variant="h6" component={Link} to="/" style={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
-          SmartTech
-        </Typography>
+    <Typography variant="h4" component={Link} to="/" style={{ 
+      flexGrow: 1, 
+      textDecoration: 'none', 
+      color: 'inherit', 
+      fontFamily: "'Merriweather', serif",
+      fontStyle: 'italic',
+
+      fontWeight: 'bold', // Make text bold
+      fontStyle: 'normal',
+      fontSize: '2.5rem' // Adjust font size as needed
+    }}>
+      SmartTech
+    </Typography>
 
         <Button color="inherit" component={Link} to="/">Home</Button>
 

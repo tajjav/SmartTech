@@ -8,10 +8,12 @@ import CategoryPage from './pages/CategoryPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 
-import GuestPage from './pages/GuestPage';
-
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+
+import GuestPage from './pages/GuestPage';
+import OrderPage from './pages/OrderPage';
+
 import { ProductProvider } from './contexts/ProductContext'; 
 import { StoreProvider } from './contexts/StoreContext'; 
 
@@ -32,7 +34,11 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/guestpage"  element={<GuestPage />} />
+          <Route path="/guestpage" element={<GuestPage />} />
+          <Route path="/orderpage" element={<OrderPage />} />
+
+            
+            
 
 
 
