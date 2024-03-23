@@ -10,10 +10,13 @@ import { useStore } from '../contexts/StoreContext';
 
 const ShoppingCartPage = () => {
   const { cart, updateQuantity, removeFromCart } = useStore();
-  console.log("+++++++", cart)
+
+  
+  useEffect(() => {
+    console.log("Cart updated, new subtotal:", calculateTotal());
+  }, [cart]);
 
   const handleQuantityChange = (item, increment) => {
-    console.log(item, increment)
     const newQuantity = item.quantity + increment;
     if (newQuantity > 0) {
       updateQuantity(item.product_Id, newQuantity);
@@ -23,27 +26,27 @@ const ShoppingCartPage = () => {
   };
 
   const handleRemoveFromCart = (productId) => {
-    console.log(productId)
     removeFromCart(productId);
   };
 
   const formatPrice = (price) => {
-
     const priceInDollars = price / 100;
     return `$${priceInDollars.toFixed(2)}`;
   };
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => {
-
-      const itemPrice = item.price_cents / 100; // Convert cents to dollars
+    const total =  cart.reduce((total, item) => {
+      console.log(total,item)
+      const itemPrice = item.product.price_cents; // Convert cents to dollars
       return total + item.quantity * itemPrice;
     }, 0).toFixed(2);
+    console.log(total)
+    
+    // 
+
+    return total
   };
 
-  useEffect(() => {
-    console.log("cart updated on frontend")
-  }, [])
   return (
     <div>
       <Breadcrumbs aria-label="breadcrumb">
@@ -72,7 +75,6 @@ const ShoppingCartPage = () => {
               <IconButton onClick={() => handleRemoveFromCart(item.id)}><DeleteIcon /></IconButton>
             </CardContent>
           </Card>
-
         ) : <Typography>Your cart is empty</Typography>}
 
         <Grid item xs={12} md={4}>
