@@ -33,18 +33,17 @@ function cartReducer(state, action) {
     case actionTypes.ADD_TO_CART:
       
       return { ...state, cart: [...state.cart, action.payload] };
-    case actionTypes.UPDATE_QUANTITY:
-     
-      return {
-        ...state,
-        cart: state.cart.map(item => item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item)
-      };
-    case actionTypes.REMOVE_FROM_CART:
-  
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.id !== action.payload.id)
-      };
+      case actionTypes.UPDATE_QUANTITY:
+        const updatedCart = state.cart.map(item => 
+          item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+        );
+        console.log("Cart after quantity update", updatedCart);
+        return { ...state, cart: updatedCart };
+        
+        case actionTypes.REMOVE_FROM_CART:
+          const newCart = state.cart.filter(item => item.id !== action.payload.id);
+          console.log("Cart after removal", newCart);
+          return { ...state, cart: newCart };
     case actionTypes.CLEAR_CART:
       
       return { ...state, cart: [] };
@@ -114,7 +113,8 @@ export const StoreProvider = ({ children }) => {
         body: JSON.stringify({ quantity })
       });
       if (!response.ok) throw new Error('Failed to update item quantity');
-      fetchCartData(); // Refresh cart data to reflect the update
+      fetchCartData();
+       // Refresh cart data to reflect the update
     } catch (error) {
       console.error('Error updating item quantity:', error);
     }
