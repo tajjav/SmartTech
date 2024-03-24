@@ -19,7 +19,7 @@ import { StoreProvider } from './contexts/StoreContext';
 import { AuthProvider } from './contexts/AuthorizationContext';
 
 import FloatingChatButton from './components/FloatingChatButton';
-import Chat from './components/Chat';
+
 import { Container } from '@mui/material';
 //import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';

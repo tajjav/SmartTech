@@ -19,9 +19,9 @@ const ShoppingCartPage = () => {
   const handleQuantityChange = (item, increment) => {
     const newQuantity = item.quantity + increment;
     if (newQuantity > 0) {
-      updateQuantity(item.product_Id, newQuantity);
+      updateQuantity(item.product_id, newQuantity);
     } else {
-      removeFromCart(item.product_Id);
+      removeFromCart(item.product_id);
     }
   };
 

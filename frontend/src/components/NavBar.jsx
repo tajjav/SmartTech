@@ -93,13 +93,13 @@ const NavBar = () => {
       textDecoration: 'none', 
       color: 'inherit', 
       fontFamily: "'Merriweather', serif",
-      fontStyle: 'italic',
+      //fontStyle: 'italic',
 
       fontWeight: 'bold', // Make text bold
       fontStyle: 'normal',
       fontSize: '2.5rem' // Adjust font size as needed
     }}>
-      SmartTech
+      Smart Tech
     </Typography>
 
         <Button color="inherit" component={Link} to="/">Home</Button>

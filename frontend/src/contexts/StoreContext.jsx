@@ -92,7 +92,7 @@ export const StoreProvider = ({ children }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          product_id: item.product_Id, 
+          product_id: item.product_id, 
           quantity: item.quantity,
          
         })
