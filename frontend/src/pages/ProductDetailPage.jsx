@@ -116,13 +116,23 @@ const ProductDetailPage = () => {
         <Box sx={{ mt: 4 }}>
           <Button
             variant="contained"
-            color="primary"
             startIcon={<ShoppingCartIcon />}
-            sx={{ padding: '10px 50px' }}
-            onClick={handleAddToCart} 
-          >
-            Add to Cart
-          </Button>
+            sx={{
+            padding: '10px 50px',
+            bgcolor: '#5e17eb', 
+            color: 'white', 
+                '&:hover': {
+            bgcolor: '#4e15cb', 
+    },
+    '.MuiButton-containedPrimary': {
+      backgroundColor: 'transparent', 
+    }
+  }}
+  onClick={handleAddToCart}
+>
+  Add to Cart
+</Button>
+
         </Box>
       </Grid>
     </Grid>

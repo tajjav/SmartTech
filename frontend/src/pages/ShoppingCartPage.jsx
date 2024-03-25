@@ -82,9 +82,23 @@ const ShoppingCartPage = () => {
             <CardContent>
               <Typography variant="h6">Order Summary</Typography>
               <Typography variant="subtitle1">Subtotal: {formatPrice(calculateTotal())}</Typography>
-              <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }} component={RouterLink} to="/checkout">
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  mt: 2,
+                  bgcolor: '#5e17eb', // Your purplish/bluish color
+                  color: 'white', // Text color
+                  '&:hover': {
+                    bgcolor: '#4e15cb', // Darker purplish/bluish color for hover state
+                  }
+                }}
+                component={RouterLink}
+                to="/checkout"
+              >
                 Checkout
               </Button>
+
             </CardContent>
           </Card>
         </Grid>

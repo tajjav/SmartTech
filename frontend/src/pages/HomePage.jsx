@@ -57,43 +57,34 @@ function CarouselItem(props) {
 }
 const FeaturedDealsBanner = () => {
   return (
-    <Paper
-  sx={{
-    height: '130px',
-    width: '100%',
-    backgroundImage: 'url(path-to-your-banner-image.jpg)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    margin: '20px',
-    backgroundColor: '#D3D3D3', 
-    position: 'relative', 
-  }}
->
-  
-  <Typography
-    variant="h4"
-    component="h2"
-    sx={{
-      fontWeight: 'bold',
-      fontSize: '30px', 
-      color: '#5e17eb', 
-      fontFamily: 'Helvetica', 
-      textAlign: 'center', 
-      lineHeight: '150px', 
-      textDecoration: 'none', 
-      transition: 'color 0.3s ease', 
-    }}
-  >
-    Shop Featured Deals
-  </Typography>
-
-
- 
-
-
-</Paper>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginY: 4, // Adds vertical spacing
+      }}
+    >
+      <Box sx={{ flexGrow: 1, height: 2, backgroundColor: '#E0E0E0' }} />
+      <Typography
+        variant="h4"
+        component="h2"
+        sx={{
+          fontWeight: 'bold',
+          fontSize: '24px', // Adjust the size as needed
+          color: '#5e17eb',
+          fontFamily: 'Helvetica',
+          mx: 2, // Horizontal margin for spacing around the text
+        }}
+      >
+        Shop Featured Deals
+      </Typography>
+      <Box sx={{ flexGrow: 1, height: 2, backgroundColor: '#E0E0E0' }} />
+    </Box>
   );
 };
+
+
 
 
 const HomePage = () => {

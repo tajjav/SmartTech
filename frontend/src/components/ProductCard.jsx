@@ -76,19 +76,24 @@ const ProductCard = ({
         </CardContent>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: '16px', gap: '8px', marginBottom: '16px' }}>
        
-          <Button 
-            variant="solid" 
-            color="primary" 
-            size="lg" 
-            className="addToCartButton"
-            onClick={handleAddToCart}
-            sx={{
-              transition: 'transform 0.3s ease-in-out',
-              alignSelf: 'flex-start', 
-            }}
-          >
-            Add to cart
-          </Button>
+        <Button 
+  variant="solid" 
+  size="lg" 
+  className="addToCartButton"
+  onClick={handleAddToCart}
+  sx={{
+    transition: 'transform 0.3s ease-in-out',
+    alignSelf: 'flex-start',
+    bgcolor: '#5e17eb', 
+    ':hover': {
+      bgcolor: '#4e15cb', 
+    },
+    color: 'white', 
+  }}
+>
+  Add to cart
+</Button>
+
         </Box>
       </Card>
     </RouterLink>
