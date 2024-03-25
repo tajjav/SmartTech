@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ChatIcon from '@mui/icons-material/Chat';
 import { Button } from '@mui/material';
 import Chat from './Chat';
+import OpenAI from "openai";
+
 
 export default function FloatingChatButton() {
   const [open, setOpen] = useState(false);
@@ -19,7 +21,8 @@ export default function FloatingChatButton() {
           position: 'fixed',
           bottom: 16,
           right: 16,
-          borderRadius: 20, // Adjust for rounded corners
+          borderRadius: 20,
+          zIndex: 10 
         }}
       >
         Live Chat

@@ -4,7 +4,7 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 const StoreContext = createContext();
 
 // Initial State
-const initialState = { cart: [],  products: [] };
+const initialState = { cart: [], products: [] };
 
 // Action Types
 const actionTypes = {
@@ -21,31 +21,26 @@ function cartReducer(state, action) {
   switch (action.type) {
     case actionTypes.SET_CART:
       // Combine the cart items with product details
-      const cartWithProductDetails = action.payload.map(cartItem => {
-        
-        const productDetails = state.products.find(p => p.id === cartItem.product_id) || {};
-        return { ...cartItem, product:productDetails };
-      });
-      console.log("cartitem w/details",cartWithProductDetails)
-      return { ...state, cart: cartWithProductDetails };
+
+      console.log("cartitem w/details", action.payload)
+      return { ...state, cart: action.payload };
     case actionTypes.SET_PRODUCTS:
       return { ...state, products: action.payload };
     case actionTypes.ADD_TO_CART:
-      
+
       return { ...state, cart: [...state.cart, action.payload] };
-      case actionTypes.UPDATE_QUANTITY:
-        const updatedCart = state.cart.map(item => 
-          item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
-        );
-        console.log("Cart after quantity update", updatedCart);
-        return { ...state, cart: updatedCart };
-        
-        case actionTypes.REMOVE_FROM_CART:
-          const newCart = state.cart.filter(item => item.id !== action.payload.id);
-          console.log("Cart after removal", newCart);
-          return { ...state, cart: newCart };
+    case actionTypes.UPDATE_QUANTITY:
+      const updatedCart = state.cart.map(item =>
+        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+      );
+      console.log("Cart after quantity update", updatedCart);
+      return { ...state, cart: updatedCart };
+    case actionTypes.REMOVE_FROM_CART:
+      const newCart = state.cart.filter(item => item.id !== action.payload.id);
+      console.log("Cart after removal", newCart);
+      return { ...state, cart: newCart };
     case actionTypes.CLEAR_CART:
-      
+
       return { ...state, cart: [] };
     default:
       return state;
@@ -56,17 +51,6 @@ function cartReducer(state, action) {
 export const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  // Define fetchProductData and fetchCartData functions
-  const fetchProductData = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`);
-      if (!response.ok) throw new Error('Failed to fetch product data');
-      const productData = await response.json();
-      dispatch({ type: actionTypes.SET_PRODUCTS, payload: productData });
-    } catch (error) {
-      console.error('Error fetching product data:', error);
-    }
-  };
 
   const fetchCartData = async () => {
     try {
@@ -81,7 +65,6 @@ export const StoreProvider = ({ children }) => {
 
   // Effect to fetch product and cart data
   useEffect(() => {
-    fetchProductData();
     fetchCartData();
   }, []);
 
@@ -92,9 +75,9 @@ export const StoreProvider = ({ children }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          product_id: item.product_id, 
+          product_id: item.product_id,
           quantity: item.quantity,
-         
+
         })
       });
       if (!response.ok) throw new Error('Failed to add item to cart');
@@ -114,7 +97,7 @@ export const StoreProvider = ({ children }) => {
       });
       if (!response.ok) throw new Error('Failed to update item quantity');
       fetchCartData();
-       // Refresh cart data to reflect the update
+      // Refresh cart data to reflect the update
     } catch (error) {
       console.error('Error updating item quantity:', error);
     }
@@ -126,7 +109,7 @@ export const StoreProvider = ({ children }) => {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to remove item from cart');
-      fetchCartData(); 
+      fetchCartData();
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }

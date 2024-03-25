@@ -14,8 +14,8 @@ import GuestPage from './pages/GuestPage';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import { ProductProvider } from './contexts/ProductContext'; 
-import { StoreProvider } from './contexts/StoreContext'; 
+import { ProductProvider } from './contexts/ProductContext';
+import { StoreProvider } from './contexts/StoreContext';
 import { AuthProvider } from './contexts/AuthorizationContext';
 
 import FloatingChatButton from './components/FloatingChatButton';
@@ -34,37 +34,37 @@ import OrderPage from './pages/OrderPage';
 
 function App() {
   return (
-    <ThemeProvider> 
-    <AuthProvider> 
-    <StoreProvider>
-    <ProductProvider>
-      <Router>
-        <NavBar />
-  
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/category/:categoryId" element={<CategoryPage />} />
-          
-          <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/product/:productId" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<ShoppingCartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/guestpage" element={<GuestPage />} />
-          <Route path="/orderpage"  element={<OrderPage />} />
+    <ThemeProvider>
+      <AuthProvider>
+        <StoreProvider>
+          <ProductProvider>
+            <Router>
+              <NavBar />
+
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/category/:categoryId" element={<CategoryPage />} />
+
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/product/:productId" element={<ProductDetailPage />} />
+                <Route path="/cart" element={<ShoppingCartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/guestpage" element={<GuestPage />} />
+                <Route path="/orderpage" element={<OrderPage />} />
 
 
 
 
-        </Routes>
-        <FloatingChatButton /> 
-        <Footer />
-      </Router>
-    </ProductProvider>
+              </Routes>
+              <FloatingChatButton />
+              <Footer />
+            </Router>
+          </ProductProvider>
         </StoreProvider>
-         </AuthProvider>
-         </ThemeProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
