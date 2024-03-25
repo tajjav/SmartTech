@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { useStore } from '../contexts/StoreContext';
-
+import { Link as RouterLink } from 'react-router-dom';
 
 const categories = ['TV', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
 
@@ -73,12 +73,21 @@ const NavBar = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
-        {categories.map((text) => (
-          <ListItem button key={text} component={Link} to={`/category/${text.toLowerCase()}`}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+     <List>
+        {categories.map((text) => {
+          const isActive = location.pathname === `/category/${text.toLowerCase()}`;
+          return (
+            <ListItem 
+              button 
+              key={text} 
+              component={Link} 
+              to={`/category/${text.toLowerCase()}`}
+              style={{ color: isActive ? '#5e17eb' : 'inherit' }} 
+            >
+              <ListItemText primary={text} />
+            </ListItem>
+          );
+        })}
       </List>
     </div>
   );
@@ -88,19 +97,27 @@ const NavBar = () => {
 <AppBar position="static" style={{ background: 'white', color: '#6441a5', boxShadow: 'none' }}>
       <Toolbar>
         
-    <Typography variant="h4" component={Link} to="/" style={{ 
-      flexGrow: 1, 
-      textDecoration: 'none', 
-      color: 'inherit', 
-      fontFamily: "'Merriweather', serif",
-      fontStyle: 'italic',
+  <Typography
+  component={RouterLink}
+  to="/"
+  style={{
+    flexGrow: 1,
+    textDecoration: 'none',
+    color: 'inherit',
+    fontFamily: "'Roboto', sans-serif",
+    fontWeight: 'bold',
+    fontSize: '2.6rem', 
+    lineHeight: '0.35', // Adjust the line height to control the spacing
+    display: 'block', // Ensures that the typography takes up the full width
 
-      fontWeight: 'bold', // Make text bold
-      fontStyle: 'normal',
-      fontSize: '2.5rem' // Adjust font size as needed
-    }}>
-      SmartTech
-    </Typography>
+  }}
+>
+   Smart
+  <br />
+  <span style={{ fontSize: '1.3rem' }}> {/* Smaller font size for "Technology" */}
+    Technology
+  </span>
+</Typography>
 
         <Button color="inherit" component={Link} to="/">Home</Button>
 

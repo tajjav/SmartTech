@@ -24,6 +24,7 @@ import { Container } from '@mui/material';
 //import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { ThemeProvider } from './contexts/ThemeContext';
+import ClearancePage from './pages/ClearancePage';
 
 import OrderPage from './pages/OrderPage';
 //import { loadStripe } from '@stripe/stripe-js';
@@ -52,7 +53,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/guestpage" element={<GuestPage />} />
-          <Route path="/orderpage"  element={<OrderPage />} />
+                <Route path="/orderpage" element={<OrderPage />} />
+                      <Route path="/clearance" element={<ClearancePage />} />
+
 
 
 

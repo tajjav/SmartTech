@@ -36,7 +36,20 @@ const GuestPage = () => {
                 id="password"
                 autoComplete="current-password"
               />
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  bgcolor: '#5e17eb', // Purplish/bluish color
+                  color: 'white',
+                  '&:hover': {
+                    bgcolor: '#4e15cb', // Darker purplish/bluish color for hover state
+                  }
+                }}
+              >
                 Login and Checkout
               </Button>
             </Box>
@@ -47,11 +60,23 @@ const GuestPage = () => {
             <Typography variant="h5" gutterBottom>
               Guest Checkout
             </Typography>
-           <Typography sx={{ mt: 1, fontSize: '0.875rem' }}> {/* fontSize size*/}
+            <Typography sx={{ mt: 1, fontSize: '0.875rem' }}>
               Continue to guest checkout. You can register and create an account after checkout.
             </Typography>
-
-            <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} onClick={handleSubmit}>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: '#5e17eb', // Purplish/bluish color
+                color: 'white',
+                '&:hover': {
+                  bgcolor: '#4e15cb', // Darker purplish/bluish color for hover state
+                }
+              }}
+              onClick={handleSubmit}
+            >
               Checkout as a Guest
             </Button>
           </Paper>

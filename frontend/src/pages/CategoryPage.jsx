@@ -42,9 +42,7 @@ console.log('produces', products)
           <Typography color="text.primary">{categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}</Typography>
         </Breadcrumbs>
   
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}> 
-                Category: {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
-            </h1>
+      
 
             <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px' }}> 
                 {products.map((product) => (
