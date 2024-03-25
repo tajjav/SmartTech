@@ -29,7 +29,7 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`)  
       .then(response => {
         console.log(`Response status: ${response.status}`);
         if (!response.ok) {
