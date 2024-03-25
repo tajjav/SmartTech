@@ -23,8 +23,8 @@ export default function Chat() {
       //setup
       
       const openai = new OpenAI({
-        apiKey:import.meta.env.OPENAI_API_KEY,
-        organization:import.meta.env.OPENAI_ORG,
+        apiKey:import.meta.env.VITE_API_OPENAI_API_KEY,
+        organization:import.meta.env.VITE_API_OPENAI_ORG,
         dangerouslyAllowBrowser: true
       }
       );
