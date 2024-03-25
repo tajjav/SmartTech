@@ -57,7 +57,7 @@ const ProductDetailPage = () => {
     const handleAddToCart = () => {
       if (product) {
         addToCart({ 
-          product_Id: product.id,
+          product_id: product.id,
           name: product.name,
           price: parseFloat(product.price_cents) / 100, // Convert price from cents to dollars if needed
           imageUrl: product.image_1,

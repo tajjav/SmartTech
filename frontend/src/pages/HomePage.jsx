@@ -7,6 +7,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
+import { useProductContext } from '../contexts/ProductContext';
 
 
 
@@ -87,38 +88,12 @@ const FeaturedDealsBanner = () => {
 
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
+  const {products} = useProductContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`);
-        console.log(`Response status: ${response.status}`); 
-        if (!response.ok) {
-          const responseBody = await response.text(); 
-          console.log(`Response body: ${responseBody}`); 
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
 
-        // Select 8 random products if the data length is more than 8
-        const randomProducts = data.length > 8 ? selectRandomProducts(data, 8) : data;
-        setProducts(randomProducts);
-      } catch (error) {
-        setError(error.message);
-        console.error("Failed to fetch products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []); 
-
-  const selectRandomProducts = (products, count) => {
+  const selectRandomProducts = (count) => {
    
     const shuffled = products.sort(() => 0.5 - Math.random());
     
@@ -143,7 +118,7 @@ const HomePage = () => {
       </Carousel>
       <FeaturedDealsBanner />
       <Grid container spacing={2} justifyContent="center">
-        {products.map(product => (
+        {selectRandomProducts(8).map(product => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
             <ProductCard
               product={product}

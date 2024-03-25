@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import CheckoutPage from './pages/CheckoutPage';
-//import ClearancePage from './pages/ClearancePage';
 import AboutUsPage from './pages/AboutUsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 
