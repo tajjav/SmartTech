@@ -10,6 +10,7 @@ const bcrypt = require("bcryptjs");
 const cors = require('cors');
 
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -53,16 +54,17 @@ const categoriesApiRoutes = require('./routes/categories-api');
 const productsApiRoutes = require('./routes/products-api');
 const lineItemsApiRoutes = require('./routes/line_items-api');
 const ordersApiRoutes = require('./routes/orders-api');
+const stripeApiRoutes = require('./routes/stripe');
 
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', usersApiRoutes);
 app.use('/api/categories', categoriesApiRoutes);
 app.use('/api/products', productsApiRoutes);
 app.use('/api/line_items', lineItemsApiRoutes); // cart should not be present in the backend at all. It is the line_item. Routes for line_items are not required.
 app.use('/api/orders', ordersApiRoutes);
+app.use('/api/stripe', stripeApiRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
