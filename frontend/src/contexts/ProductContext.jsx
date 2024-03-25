@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useCallback } from 'react';
+import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
 
 const ProductContext = createContext();
 
@@ -13,7 +13,7 @@ export const ProductProvider = ({ children }) => {
     setLoading(true);
     try {
    // API URL is correct. 
-   const response = await fetch(`http://localhost:8080/api/categories/${categoryId}/products`);
+   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/categories/${categoryId}/products`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -27,12 +27,31 @@ export const ProductProvider = ({ children }) => {
     }
   }, []); 
 
-  const value = {
-    products,
-    loading,
-    error,
-    fetchProducts,
-  };
+  useEffect(() => {
+    setLoading(true);
+    fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`)
+      .then(response => {
+        console.log(`Response status: ${response.status}`);
+        if (!response.ok) {
+          return response.text().then(responseBody => {
+            console.log(`Response body: ${responseBody}`);
+            throw new Error('Network response was not ok');
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        setProducts(data);
+      })
+      .catch(error => {
+        setError(error.message);
+        console.error("Failed to fetch products:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  
 
-  return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
+  return <ProductContext.Provider value={{products,fetchProducts} }>{children}</ProductContext.Provider>;
 };

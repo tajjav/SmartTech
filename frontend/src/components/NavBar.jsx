@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { useStore } from '../contexts/StoreContext';
+import Logo from '/images/Logo.svg'
 
 
 const categories = ['TV', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
@@ -93,13 +94,14 @@ const NavBar = () => {
       textDecoration: 'none', 
       color: 'inherit', 
       fontFamily: "'Merriweather', serif",
-      fontStyle: 'italic',
+      //fontStyle: 'italic',
 
       fontWeight: 'bold', // Make text bold
       fontStyle: 'normal',
       fontSize: '2.5rem' // Adjust font size as needed
     }}>
-      SmartTech
+        <img src={Logo} alt="Logo" style={{ height: '300px'}}/> 
+        
     </Typography>
 
         <Button color="inherit" component={Link} to="/">Home</Button>
