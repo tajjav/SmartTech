@@ -60,6 +60,8 @@ const ShoppingCartPage = () => {
         {cart.length > 0 ? cart.map((item) =>
           products[item.product_id] &&
           <Card key={item.id} sx={{ display: 'flex', flexDirection: 'row', marginBottom: 2 }}>
+
+
             <CardMedia
               component="img"
               sx={{ width: '20%', objectFit: 'cover' }}
