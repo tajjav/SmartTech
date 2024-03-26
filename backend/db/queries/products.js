@@ -145,7 +145,7 @@ const remove = (id) => {
 const getProductsByBrand = (brand) => {
   const queryString = `
     SELECT * FROM products
-    WHERE brand = $1;
+    WHERE brand = $1 ;
   `;
   const queryParams = [brand];
 

@@ -57,6 +57,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const { cart, updateQuantity, removeFromCart } = useStore();
 
   const toggleDrawer = (isOpen) => (event) => {
@@ -65,7 +67,22 @@ const NavBar = () => {
     }
     setDrawerOpen(isOpen);
   };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products/search?query=${searchQuery}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch search results');
+      }
+      const data = await response.json();
+      setSearchResults(data);
+    } catch (error) {
+      console.error('Error searching:', error);
+    }
+  };
 
   const DrawerList = () => (
     <div
@@ -73,16 +90,16 @@ const NavBar = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-     <List>
+      <List>
         {categories.map((text) => {
           const isActive = location.pathname === `/category/${text.toLowerCase()}`;
           return (
-            <ListItem 
-              button 
-              key={text} 
-              component={Link} 
+            <ListItem
+              button
+              key={text}
+              component={Link}
               to={`/category/${text.toLowerCase()}`}
-              style={{ color: isActive ? '#5e17eb' : 'inherit' }} 
+              style={{ color: isActive ? '#5e17eb' : 'inherit' }}
             >
               <ListItemText primary={text} />
             </ListItem>
@@ -94,30 +111,30 @@ const NavBar = () => {
 
 
   return (
-<AppBar position="static" style={{ background: 'white', color: '#6441a5', boxShadow: 'none' }}>
+    <AppBar position="static" style={{ background: 'white', color: '#6441a5', boxShadow: 'none' }}>
       <Toolbar>
-        
-  <Typography
-  component={RouterLink}
-  to="/"
-  style={{
-    flexGrow: 1,
-    textDecoration: 'none',
-    color: 'inherit',
-    fontFamily: "'Roboto', sans-serif",
-    fontWeight: 'bold',
-    fontSize: '2.6rem', 
-    lineHeight: '0.35', // Adjust the line height to control the spacing
-    display: 'block', // Ensures that the typography takes up the full width
 
-  }}
->
-   Smart
-  <br />
-  <span style={{ fontSize: '1.3rem' }}> {/* Smaller font size for "Technology" */}
-    Technology
-  </span>
-</Typography>
+        <Typography
+          component={RouterLink}
+          to="/"
+          style={{
+            flexGrow: 1,
+            textDecoration: 'none',
+            color: 'inherit',
+            fontFamily: "'Roboto', sans-serif",
+            fontWeight: 'bold',
+            fontSize: '2.6rem',
+            lineHeight: '0.35', // Adjust the line height to control the spacing
+            display: 'block', // Ensures that the typography takes up the full width
+
+          }}
+        >
+          Smart
+          <br />
+          <span style={{ fontSize: '1.3rem' }}> {/* Smaller font size for "Technology" */}
+            Technology
+          </span>
+        </Typography>
 
         <Button color="inherit" component={Link} to="/">Home</Button>
 
@@ -129,22 +146,30 @@ const NavBar = () => {
 
         <Button color="inherit" component={Link} to="/clearance">Clearance</Button>
         <Button color="inherit" component={Link} to="/about">About Us</Button>
-        
-   {/* Search component inserted here */}
-   <Search>
+
+        {/* Search component inserted here */}
+        <Search>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                handleSearch();
+              }
+            }}
           />
+
         </Search>
         <IconButton aria-label="show cart items" color="inherit" component={Link} to="/cart">
-       
-          <ShoppingCartIcon /> {cart.length> 0 && cart.length}
+
+          <ShoppingCartIcon /> {cart.length > 0 && cart.length}
         </IconButton>
-        
+
         <IconButton
           edge="end"
           aria-label="account of current user"
