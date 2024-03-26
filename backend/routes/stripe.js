@@ -29,23 +29,26 @@ router.post('/create-checkout-session', async (req, res) => {
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price_data: {
-          currency: 'usd',
+          currency: 'cad',
           product_data: {
-            name: 'Samsung 55" 4K TV',
-            description: "Crystal-clear colors and stunning detail"
+            name: 'Samsung 55" 4K Smart TV',
+            images: [`${process.env.SERVER_DOMAIN}/images/TV/Samsung-55-4K-Smart-Tv.jpg`],
+            description: "Crystal-clear colors and stunning detail",
           },
-          unit_amount: 20000,
+          unit_amount: 99999,
         }, 
         quantity: 1,
       },
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price_data: {
-          currency: 'usd',
+          currency: 'cad',
           product_data: {
-            name: 'Sony 85" 8K TV',
+            name: 'Lenovo ThinkPad X1 Carbon',
+            description: "Durable and lightweight business laptop",
+            images: ['images/TV/Samsung-55-4K-Smart-Tv.jpg']
           },
-          unit_amount: 30000,
+          unit_amount: 149999,
         }, 
         quantity: 1,
       },
@@ -54,10 +57,15 @@ router.post('/create-checkout-session', async (req, res) => {
     mode: 'payment',
     success_url: `${process.env.YOUR_DOMAIN}/checkout-success`,
     cancel_url: `${process.env.YOUR_DOMAIN}/cart`,
-  });
-
+  }
+  
+  );
+  // console.log('session ', session);
+  
   // res.redirect(303, session.url);
   res.send({url: session.url});
-});
+}
+
+);
 
 module.exports = router

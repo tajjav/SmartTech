@@ -1,3 +1,6 @@
+
+import React from "react";
+import styled from 'styled-components';
 import React from 'react';
 import { Box, Card, CardContent, CardMedia, Typography, Grid, Container, Button } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -24,6 +27,16 @@ const CheckoutSuccess = () => {
   };
 
   return (
+    <Container>
+      <h1>Checkout Successful</h1>
+      <p>Your order might take some time to process.</p>
+      <p>Check your order status at your profile after about 10mins.</p>
+      <p>
+        Incase of any inqueries contact the support at{" "}
+        <strong>support@smarttech.ca</strong>
+      </p>
+    </Container>
+  )
     <Container sx={{ bgcolor: theme.colors.background, padding: 4, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box sx={{ textAlign: 'center', marginBottom: 4 }}>
         <Typography
@@ -73,4 +86,21 @@ const CheckoutSuccess = () => {
 };
 
 export default CheckoutSuccess;
+
+
+const Container = styled.div`
+  min-height: 80vh;
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin-bottom: 0.5rem;
+    color: #029e02;
+  }
+`;
 
