@@ -50,7 +50,7 @@ const ShoppingCartPage = () => {
 
   return (
     <div>
-      <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 2, mb: 0, ml: 45, mr: 2}}>
         <MuiLink component={RouterLink} color="inherit" to="/">
           Home
         </MuiLink>
@@ -60,6 +60,8 @@ const ShoppingCartPage = () => {
         {cart.length > 0 ? cart.map((item) =>
           products[item.product_id] &&
           <Card key={item.id} sx={{ display: 'flex', flexDirection: 'row', marginBottom: 2 }}>
+
+
             <CardMedia
               component="img"
               sx={{ width: '20%', objectFit: 'cover' }}

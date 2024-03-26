@@ -5,21 +5,23 @@ const ProductContext = createContext();
 export const useProductContext = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({})
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchProducts = useCallback(async (categoryId) => {
     setLoading(true);
     try {
-   // API URL is correct. 
-   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/categories/${categoryId}/products`);
-
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/categories/${categoryId}/products`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setProducts(data);
+      const productsObject = data.reduce((acc, product) => {
+        acc[product.id] = product;
+        return acc;
+      }, {});
+      setProducts(productsObject);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -29,7 +31,7 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`)  
+    fetch(`${import.meta.env.VITE_API_BASE_URL}api/products`)
       .then(response => {
         console.log(`Response status: ${response.status}`);
         if (!response.ok) {
@@ -41,7 +43,11 @@ export const ProductProvider = ({ children }) => {
         return response.json();
       })
       .then(data => {
-        setProducts(data);
+        const productsObject = data.reduce((acc, product) => {
+          acc[product.id] = product;
+          return acc;
+        }, {});
+        setProducts(productsObject);
       })
       .catch(error => {
         setError(error.message);
@@ -51,6 +57,7 @@ export const ProductProvider = ({ children }) => {
         setLoading(false);
       });
   }, []);
+
   
 
   return <ProductContext.Provider value={{products,fetchProducts} }>{children}</ProductContext.Provider>;

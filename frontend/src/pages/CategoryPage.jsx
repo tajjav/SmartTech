@@ -13,11 +13,11 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
-    const { products, loading, error, fetchProducts } = useProductContext(); //context to manage state
+    const { products, loading, error, fetchProducts } = useProductContext(); 
 console.log('produces', products)
     useEffect(() => {
         const backendCategoryId = transformCategoryId(categoryId);
-        fetchProducts(backendCategoryId); // Use context function to fetch products
+        fetchProducts(backendCategoryId); 
     }, [categoryId, fetchProducts]);
 
     if (loading) return (
@@ -27,25 +27,25 @@ console.log('produces', products)
   );
     if (error) return <Typography>Error: {error}</Typography>;
 
-
+    const productsArray = Object.values(products);
     
 
     return (
       <div>
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs aria-label="breadcrumb"  sx={{ mt: 2, mb: 0, ml: 45, mr: 2}}>
           <Link component={RouterLink} color="inherit" to="/">
             Home
           </Link>
           <Link  color="inherit" to="/products">
             Products
           </Link>
-          <Typography color="text.primary">{categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}</Typography>
+          <Typography color="pruple">{categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}</Typography>
         </Breadcrumbs>
   
       
 
             <Grid container spacing={4} justifyContent="center" style={{ margin: '0 auto', maxWidth: '1280px' }}> 
-                {products.map((product) => (
+            {productsArray.map((product) => (
                     <Grid item xs={12} sm={6} md={4} key={product.id} style={{ display: 'flex', justifyContent: 'center' }}> 
                         <ProductCard
                             product={product}

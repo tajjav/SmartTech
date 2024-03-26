@@ -38,19 +38,19 @@ function CarouselItem(props) {
         alignItems: 'center', 
         height: '500px', 
         width: '100%',
-        margin: 'auto',
-        backgroundColor: 'white', 
+        margin: '10px',
+        backgroundColor: 'transparent', 
       }}
       elevation={0}
     >
       <img
         src={props.imageUrl}
         style={{
-          maxWidth: '100%',
-          maxHeight: '100%', 
-          //objectFit: 'contain', // Ensures the image's aspect ratio is maintained
+          maxWidth: '180%',
+          maxHeight: '145%', 
+          objectFit: 'contain', 
         }}
-        alt=""
+        alt="carousel"
       />
     </Paper>
   );
@@ -95,10 +95,14 @@ const HomePage = () => {
 
   const selectRandomProducts = (count) => {
    
-    const shuffled = products.sort(() => 0.5 - Math.random());
+    const productsArray = Object.values(products);
+
+    const shuffled = productsArray.sort(() => 0.5 - Math.random());
     
+   
     return shuffled.slice(0, count);
   };
+  
 
   if (loading) return <LinearProgress color="secondary" />;
   if (error) return <div>Error: {error}</div>;
