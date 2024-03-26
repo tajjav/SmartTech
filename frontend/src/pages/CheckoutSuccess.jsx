@@ -38,7 +38,7 @@ const CheckoutSuccess = () => {
             fontWeight: 'bold',
           }}
         >
-          THANK YOU FOR YOUR ORDER!
+        THANK YOU FOR YOUR ORDER!
         </Typography>
         <CheckCircleOutlineIcon sx={{ fontSize: 60, color: theme.colors.primary }} />
       </Box>
