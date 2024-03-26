@@ -94,7 +94,7 @@ const ShoppingCartPage = () => {
                     bgcolor: '#4e15cb', // Darker purplish/bluish color for hover state
                   }
                 }}
-                cartItems={cart}
+                cartItems={cart.cartItems}
                 component={RouterLink}
                 />
                  {/* to="/checkout" */}
