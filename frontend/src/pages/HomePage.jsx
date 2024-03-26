@@ -95,10 +95,14 @@ const HomePage = () => {
 
   const selectRandomProducts = (count) => {
    
-    const shuffled = products.sort(() => 0.5 - Math.random());
+    const productsArray = Object.values(products);
+
+    const shuffled = productsArray.sort(() => 0.5 - Math.random());
     
+   
     return shuffled.slice(0, count);
   };
+  
 
   if (loading) return <LinearProgress color="secondary" />;
   if (error) return <div>Error: {error}</div>;
