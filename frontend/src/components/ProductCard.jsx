@@ -17,11 +17,11 @@ const ProductCard = ({
   const { addToCart } = useStore();
 
   const handleAddToCart = (event) => {
-    event.preventDefault(); // Prevent default action
-    event.stopPropagation(); // Stop the event from propagating to parent elements
+    event.preventDefault(); 
+    event.stopPropagation(); 
   
     addToCart({
-      productId,
+      product_id,
       name,
       price_cents: clearance ? clearancePrice : price_cents,
       image_1,
@@ -46,7 +46,7 @@ const ProductCard = ({
 
   return (
     <RouterLink to={`/product/${productId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <Card sx={{ ...cardHoverStyle, width: 220, maxWidth: '150%', boxShadow: 'lg', ml: '20px', cursor: 'pointer', paddingLeft: '16px' /* Adjust left padding */ }}>
+      <Card sx={{ ...cardHoverStyle, width: 350, maxWidth: '250%', boxShadow: 'lg', ml: '20px', cursor: 'pointer', paddingLeft: '16px'  }}>
         <CardOverflow>
           <AspectRatio sx={{ minWidth: 200 }}>
             <img src={import.meta.env.VITE_API_BASE_URL + image_1} loading="lazy" alt={name} />
@@ -90,6 +90,7 @@ const ProductCard = ({
     },
     color: 'white', 
   }}
+ 
 >
   Add to cart
 </Button>
