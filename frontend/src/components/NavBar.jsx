@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, InputBase } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, Box, List, ListItem, ListItemText, InputBase } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import { useStore } from '../contexts/StoreContext';
 import { Link as RouterLink } from 'react-router-dom';
+import { Menu, MenuItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const categories = ['TV', 'Laptops', 'Smartphones', 'Headphones', 'Tablets'];
 
@@ -51,26 +53,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
-
-
-
 const NavBar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const { cart, updateQuantity, removeFromCart } = useStore();
 
-  const toggleDrawer = (isOpen) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setDrawerOpen(isOpen);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const isMenuOpen = Boolean(menuAnchorEl);
+
+  const handleMenuOpen = (event) => {
+    setMenuAnchorEl(event.currentTarget);
   };
+
+  const handleMenuClose = () => {
+    setMenuAnchorEl(null);
+  };
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-
+  const navigate = useNavigate();
   const handleSearch = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/products/search?query=${searchQuery}`);
@@ -78,36 +81,36 @@ const NavBar = () => {
         throw new Error('Failed to fetch search results');
       }
       const data = await response.json();
-      setSearchResults(data);
+    
+      navigate(`/search/${searchQuery}`); 
     } catch (error) {
       console.error('Error searching:', error);
     }
   };
-
-  const DrawerList = () => (
-    <div
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {categories.map((text) => {
-          const isActive = location.pathname === `/category/${text.toLowerCase()}`;
-          return (
-            <ListItem
-              button
-              key={text}
-              component={Link}
-              to={`/category/${text.toLowerCase()}`}
-              style={{ color: isActive ? '#5e17eb' : 'inherit' }}
-            >
-              <ListItemText primary={text} />
-            </ListItem>
-          );
-        })}
-      </List>
-    </div>
-  );
+  // //const DrawerList = () => (
+  //   <div
+  //     role="presentation"
+  //     onClick={toggleDrawer(false)}
+  //     onKeyDown={toggleDrawer(false)}
+  //   >
+  //     <List>
+  //       {categories.map((text) => {
+  //         const isActive = location.pathname === `/category/${text.toLowerCase()}`;
+  //         return (
+  //           <ListItem
+  //             button
+  //             key={text}
+  //             component={Link}
+  //             to={`/category/${text.toLowerCase()}`}
+  //             style={{ color: isActive ? '#5e17eb' : 'inherit' }}
+  //           >
+  //             <ListItemText primary={text} />
+  //           </ListItem>
+  //         );
+  //       })}
+  //     </List>
+  //   </div>
+  // );
 
 
   return (
@@ -123,31 +126,58 @@ const NavBar = () => {
             color: 'inherit',
             fontFamily: "'Roboto', sans-serif",
             fontWeight: 'bold',
-            fontSize: '2.6rem',
-            lineHeight: '0.35', // Adjust the line height to control the spacing
-            display: 'block', // Ensures that the typography takes up the full width
+            fontSize: '3.6rem',
+            lineHeight: '0.50',
+            display: 'block',
 
           }}
         >
           Smart
           <br />
-          <span style={{ fontSize: '1.3rem' }}> {/* Smaller font size for "Technology" */}
+          <span style={{ fontSize: '2.3rem' }}>
             Technology
           </span>
         </Typography>
+        <Box sx={{ display: 'flex', flexGrow: 12 }}> 
+          <Button color="inherit" component={Link} to="/" sx={{ fontWeight: 'bold', color: '#5e17eb' }}>Home</Button>
+          <Button color="inherit" onClick={handleMenuOpen} sx={{ fontWeight: 'bold', color: '#5e17eb' }}>Products</Button>
 
-        <Button color="inherit" component={Link} to="/">Home</Button>
 
-        {/* Button for Drawer */}
-        <Button color="inherit" onClick={toggleDrawer(true)}>Products</Button>
-        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-          <DrawerList />
-        </Drawer>
+          <Button color="inherit" component={Link} to="/clearance" sx={{ fontWeight: 'bold', color: '#5e17eb' }}>Clearance</Button>
+          <Button color="inherit" component={Link} to="/about" sx={{ fontWeight: 'bold', color: '#5e17eb' }}>About Us</Button>
+        </Box>
 
-        <Button color="inherit" component={Link} to="/clearance">Clearance</Button>
-        <Button color="inherit" component={Link} to="/about">About Us</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', flexGrow: 0 }}>
+         
+        </Box>
 
-        {/* Search component inserted here */}
+        <Menu
+          anchorEl={menuAnchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+        >
+          {categories.map((category) => (
+            <MenuItem
+              key={category}
+              onClick={handleMenuClose}
+              component={Link}
+              to={`/category/${category.toLowerCase()}`}
+              sx={{ '&:hover': { color: '#800080' } }} 
+            >
+              {category}
+            </MenuItem>
+          ))}
+        </Menu>
+      
         <Search>
           <SearchIconWrapper>
             <SearchIcon />

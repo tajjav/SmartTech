@@ -50,7 +50,7 @@ const ShoppingCartPage = () => {
 
   return (
     <div>
-      <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 2, mb: 0, ml: 45, mr: 2}}>
         <MuiLink component={RouterLink} color="inherit" to="/">
           Home
         </MuiLink>

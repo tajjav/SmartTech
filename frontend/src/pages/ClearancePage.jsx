@@ -24,7 +24,7 @@ const ClearancePage = () => {
 
   return (
     <div>
-      <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 2, mb: 0, ml: 45, mr: 2}}>
         <Link component={RouterLink} color="inherit" to="/">
           Home
         </Link>
