@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link as RouterLink } from 'react-router-dom';
 import { useStore } from '../contexts/StoreContext';
 import { useProductContext } from '../contexts/ProductContext';
+import PayButton from '../components/PayButton';
 
 
 
@@ -82,7 +83,7 @@ const ShoppingCartPage = () => {
             <CardContent>
               <Typography variant="h6">Order Summary</Typography>
               <Typography variant="subtitle1">Subtotal: {formatPrice(calculateTotal())}</Typography>
-              <Button
+              <PayButton
                 variant="contained"
                 fullWidth
                 sx={{
@@ -93,11 +94,11 @@ const ShoppingCartPage = () => {
                     bgcolor: '#4e15cb', // Darker purplish/bluish color for hover state
                   }
                 }}
+                cartItems={cart.cartItems}
                 component={RouterLink}
-                to="/checkout"
-              >
-                Checkout
-              </Button>
+                />
+                 {/* to="/checkout" */}
+
 
             </CardContent>
           </Card>

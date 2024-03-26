@@ -49,7 +49,7 @@ const create = (newProduct) => {
 // show all products
 const showAll = () => {
   const queryString = `
-    SELECT * FROM products LIMIT  9;
+    SELECT * FROM products;
   `;
 
   return db
@@ -145,7 +145,7 @@ const remove = (id) => {
 const getProductsByBrand = (brand) => {
   const queryString = `
     SELECT * FROM products
-    WHERE brand = $1 LIMIT  9;
+    WHERE brand = $1;
   `;
   const queryParams = [brand];
 

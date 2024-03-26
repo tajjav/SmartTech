@@ -26,6 +26,8 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import ClearancePage from './pages/ClearancePage';
 
 import OrderPage from './pages/OrderPage';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import NotFound from './pages/NotFound';
 //import { loadStripe } from '@stripe/stripe-js';
 //import { Elements } from '@stripe/react-stripe-js';
 
@@ -35,38 +37,40 @@ import OrderPage from './pages/OrderPage';
 function App() {
   return (
     <ThemeProvider> 
-    <AuthProvider> 
-    <StoreProvider>
-    <ProductProvider>
-      <Router>
-        <NavBar />
-  
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/category/:categoryId" element={<CategoryPage />} />
-          
-          <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/product/:productId" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<ShoppingCartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/guestpage" element={<GuestPage />} />
-                <Route path="/orderpage" element={<OrderPage />} />
-                      <Route path="/clearance" element={<ClearancePage />} />
+      <AuthProvider> 
+        <StoreProvider>
+          <ProductProvider>
+            <Router>
+              <NavBar />
+        
+              <Routes>
+                <Route path='*' element={<NotFound/>} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/category/:categoryId" element={<CategoryPage />} />
+                
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/product/:productId" element={<ProductDetailPage />} />
+                <Route path="/cart" element={<ShoppingCartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path='/checkout-success' element={<CheckoutSuccess/>} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/guestpage" element={<GuestPage />} />
+                      <Route path="/orderpage" element={<OrderPage />} />
+                            <Route path="/clearance" element={<ClearancePage />} />
 
 
 
 
 
-        </Routes>
-        <FloatingChatButton /> 
-        <Footer />
-      </Router>
-    </ProductProvider>
+              </Routes>
+              <FloatingChatButton /> 
+              <Footer />
+            </Router>
+          </ProductProvider>
         </StoreProvider>
-         </AuthProvider>
-         </ThemeProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
