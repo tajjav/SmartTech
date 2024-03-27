@@ -117,27 +117,19 @@ const NavBar = () => {
     <AppBar position="static" style={{ background: 'white', color: '#6441a5', boxShadow: 'none' }}>
       <Toolbar>
 
-        <Typography
-          component={RouterLink}
-          to="/"
-          style={{
-            flexGrow: 1,
-            textDecoration: 'none',
-            color: 'inherit',
-            fontFamily: "'Roboto', sans-serif",
-            fontWeight: 'bold',
-            fontSize: '3.6rem',
-            lineHeight: '0.50',
-            display: 'block',
-
-          }}
-        >
-          Smart
-          <br />
-          <span style={{ fontSize: '2.3rem' }}>
-            Technology
-          </span>
-        </Typography>
+      <RouterLink to="/" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <img
+            src="/images/STLogo.png"   
+            alt="Smart Technology"
+            style={{  maxHeight: '100%', 
+            width: '260px', 
+            maxWidth: '320px', 
+            position: 'relative',
+            top: '-10px', 
+            bottom: '-10px', 
+           }}
+          />
+        </RouterLink>
         <Box sx={{ display: 'flex', flexGrow: 12 }}> 
           <Button color="inherit" component={Link} to="/" sx={{ fontWeight: 'bold', color: '#5e17eb' }}>Home</Button>
           <Button color="inherit" onClick={handleMenuOpen} sx={{ fontWeight: 'bold', color: '#5e17eb' }}>Products</Button>
