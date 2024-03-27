@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import ProductCard from '../components/ProductCard';
-// Other imports as necessary
+
 
 function SearchResultsPage() {
   const [searchResults, setSearchResults] = useState([]);
-  const { query } = useParams(); // Get the search query from the URL
+  const { query } = useParams(); 
 
   useEffect(() => {
     const fetchSearchResults = async () => {
