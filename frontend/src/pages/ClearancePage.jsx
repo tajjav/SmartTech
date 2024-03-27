@@ -21,10 +21,9 @@ const ClearancePage = () => {
     );
     setClearanceProducts(uniqueClearanceItems);
   }, []);
-
   return (
     <div>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 2, mb: 0, ml: 45, mr: 2}}>
+      <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 2, mb: 0, ml: 45, mr: 2 }}>
         <Link component={RouterLink} color="inherit" to="/">
           Home
         </Link>
@@ -48,26 +47,27 @@ const ClearancePage = () => {
                 <Typography variant="body2" color="text.secondary">
                   {product.description}
                 </Typography>
-                <Typography variant="h6">
-                  Sale: {product.price}
+                <Typography variant="h6" color="error">
+                  {product.price}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
                   {product.originalPrice}
                 </Typography>
                 <Button
                   variant="contained"
+                  size="large"
                   fullWidth
                   sx={{
                     mt: 2,
                     bgcolor: '#5e17eb',
-                    color: 'white', 
+                    color: 'white',
                     '&:hover': {
-                      bgcolor: '#4e15cb', 
+                      bgcolor: '#4e15cb',
                     },
-                    
+                    transition: 'transform 0.3s ease-in-out',
                   }}
                 >
-                  Add to Cart
+                  Add to cart
                 </Button>
               </CardContent>
             </Card>
