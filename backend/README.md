@@ -1,4 +1,4 @@
-LHL Node Skeleton
+Node Backend
 =========
 
 ## Project Setup
